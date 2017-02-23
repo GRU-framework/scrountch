@@ -1,0 +1,5 @@
+a2x -v -d book -f epub -a docinfo  --stylesheet scrountch.css --xsltproc-opts='--stringparam part.autolabel 0'  --xsltproc-opts='--stringparam section.autolabel 0'  scrountch.adoc
+
+#a2x -v -d book -f epub  --stylesheet intro_prog2.css --xsltproc-opts='--stringparam part.autolabel 0'  --xsltproc-opts='--stringparam section.autolabel 0' --xsltproc-opts='--stringparam section.level1.properties page-break-after' --xsltproc-opts='--stringparam section.properties page-break-before' --xsltproc-opts='--stringparam section.level2.properties page-break-after'  --xsltproc-opts='--stringparam section.level3.properties page-break-after' intro_prog2.adoc
+
+#a2x -v -d book -f epub -a docinfo --stylesheet intro_prog2.css --xsltproc-opts='--stringparam part.autolabel 0'  --xsltproc-opts='--stringparam section.autolabel 0' intro_prog2.adoc

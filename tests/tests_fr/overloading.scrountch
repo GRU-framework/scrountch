@@ -1,0 +1,7 @@
+for(int ix = 0 ;ix < 7 ;ix++) {
+  imageDepuisFichier("duke0.gif")
+  imageDepuisFichier("duke0.gif", 50)
+  imageDepuisFichier("duke1.gif")
+  imageDepuisFichier("duke2.gif")
+  pause(300)
+}

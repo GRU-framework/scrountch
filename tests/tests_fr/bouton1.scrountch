@@ -1,0 +1,15 @@
+def boutonTourneur(String nomFichier) {
+    ImageGraphique imageGraphique = imageDepuisFichier(nomFichier)
+    int dim = 5+ Math.hypot(imageGraphique.hauteurInitiale(), imageGraphique.largeurInitiale())
+    Cadre cadre = créerCadre("Rotations 45", dim, dim)
+    Canevas canevas = cadre.canevas()
+    Bouton bouton = créerBouton("rotation", "Cliquez pour 45°")
+    cadre.ajouterAuSud(bouton)
+    canevas.ajoutGraphique(imageGraphique)
+    bouton.siClic({
+        imageGraphique.rotationCentrée(45)
+        canevas.repeindre()
+    })
+}
+
+boutonTourneur("duke0.gif")

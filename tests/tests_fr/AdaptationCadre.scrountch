@@ -1,0 +1,23 @@
+
+def adapterImage(String nomURL){
+    int hauteurCadre = 300
+    int largeurCadre = 300
+    ImageGraphique image = imageDepuisURL(nomURL)
+    Cadre cadre = créerCadre(nomURL,largeurCadre, hauteurCadre)
+     int hauteurImage = image.hauteurInitiale()
+    int largeurImage = image.largeurInitiale()
+    double echelleHauteur = (hauteurCadre * 100D)  / hauteurImage
+    double echelleLargeur = (largeurCadre * 100D) / largeurImage
+    int plusPetitRapport = echelleLargeur
+    if(echelleHauteur < echelleLargeur) {
+      plusPetitRapport = echelleHauteur
+    }
+    if(plusPetitRapport < 100) {
+      image.changerEchelle(plusPetitRapport)
+    }
+    Canevas fondDessin = cadre.canevas()
+    fondDessin.ajoutGraphique(image)
+}
+
+String nom = readln("donnez l'URL de l'iconImage")
+adapterImage(nom)

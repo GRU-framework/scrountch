@@ -1,0 +1,27 @@
+def double angleInternePolygone(int nbCotés) {
+ return ((nbCotés -2) * 180D)/ nbCotés
+}
+
+def int tailleCoté(int rayon, int nbCotés) {
+   return 2 * (rayon * Math.sin(Math.PI/nbCotés))
+}
+
+ def polygoneParTortue(int rayon, int nbCotés) {
+  int coté = tailleCoté(rayon, nbCotés)
+  double angleRotation =  180 - angleInternePolygone(nbCotés)
+  Tortue tortue = créerTortue()
+  int ix = 0
+  while(ix < nbCotés) {
+      tortue.avance(coté)
+      tortue.tourneDroite(angleRotation)
+      ix = ix +1
+  }
+  FormeGraphique graphe = créerFormeGraphique(tortue, recentrer(), recentrer())
+ // int dim = 5 + (Math.hypot(graphe.largeurInitiale(), graphe.hauteurInitiale()) / 1.3)
+ int dim = tortue.maxDim() + 5
+  Cadre cadre = créerCadre(dim, dim)
+  Canevas dessin = cadre.canevas()
+  dessin.ajoutGraphique(graphe)
+ }
+
+ polygoneParTortue(300,5)

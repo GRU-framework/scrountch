@@ -1,0 +1,14 @@
+
+
+def  créerDamier(int lignes, colonnes) {
+    ImageGraphique pion = imageDepuisFichier("draught1.jpg",20)
+    int dim = Math.max(pion.hauteurInitiale(), pion.largeurInitiale())
+    Cadre cadre = créerCadre("jeu",dim,dim, lignes, colonnes)
+    Fermeture fermeture = {
+        Canevas canevas, int x, int y ->
+            canevas.ajoutGraphique(pion)
+    }
+    cadre.siClicSurTous(fermeture)
+}
+
+créerDamier(5,5)

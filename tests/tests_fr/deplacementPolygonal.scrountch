@@ -1,0 +1,39 @@
+import java.awt.Color
+import java.awt.RadialGradientPaint
+
+//bien sur ce serait mieux de garder ces fonctions réutilisables
+// dans un autre code
+
+def double angleInternePolygone(int nbCotés) {
+    return ((nbCotés - 2) * 180D) / nbCotés
+}
+
+def int tailleCoté(int rayon, int nbCotés) {
+    return 2 * (rayon * Math.sin(Math.PI / nbCotés))
+}
+
+def deplacementPolygone(Forme forme, int rayon, int nbCotés) {
+    int hauteurForme = forme.hauteur()
+    int largeurForme = forme.largeur()
+    int coteCadre = 5 + 2 *(rayon + Math.max(hauteurForme, largeurForme))
+     int coté = tailleCoté(rayon, nbCotés)
+     double posDépart = (coteCadre/2) - ((coté/2)+largeurForme) 
+    FormeGraphique graphe = créerFormeGraphique(forme, posDépart, 2.5D, Color.RED ,Color.RED)
+    Cadre cadre = créerCadre(coteCadre, coteCadre)
+    Canevas dessin = cadre.canevas()
+    dessin.ajoutGraphique(graphe)
+    double angleRotation = 180 - angleInternePolygone(nbCotés)
+    int ix = 0
+    graphe.direction(0)
+    while (ix < nbCotés) {
+        pause(1000)
+        graphe.déplacerDe(coté)
+        graphe.changerDirection(angleRotation)
+        dessin.repeindre()
+        ix = ix+1 
+    }
+
+}
+
+EllipseD ellipse = créerEllipse(20, 20)
+deplacementPolygone(ellipse, 300, 13)

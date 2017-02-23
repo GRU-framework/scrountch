@@ -1,0 +1,12 @@
+/**
+ *
+ * @author bamade
+ */
+// Date: 25/04/2016
+
+EllipseD ellipse = créerEllipse(50,50)
+Rectangle rect =ellipse.enveloppe()
+FormeGraphique graf= créerFormeGraphique(ellipse)
+graf.rotationCentrée(33)
+
+ 

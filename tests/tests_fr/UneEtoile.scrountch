@@ -1,0 +1,12 @@
+class UneEtoile extends Tortue{
+   UneEtoile(int nbCotés, int longueurCoté) {
+       double anglPolygone = ((nbCotés -2) * 180D)/ nbCotés
+       double angleEtoile = (180D /nbCotés)
+       for(int ix = 0; ix <nbCotés; ix++) {
+          avance(longueurCoté)
+          tourneGauche(anglPolygone-angleEtoile)
+          avance(longueurCoté)
+          tourneDroite(180 - angleEtoile)
+       }    
+   }
+}

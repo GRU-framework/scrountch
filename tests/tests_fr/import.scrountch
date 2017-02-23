@@ -1,0 +1,8 @@
+import java.awt.Rectangle
+import java.awt.geom.Area
+
+Rectangle rec = new Rectangle(0,0,10, 20)
+Area area = new Area(rec)
+for(int ix = 0 ; ix < 5; ix++){
+    area.contient(1D,1D)
+}

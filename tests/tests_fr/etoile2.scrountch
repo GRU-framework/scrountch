@@ -1,0 +1,20 @@
+class Etoile extends Tortue{
+   Etoile(int nbCotés, int longueurCoté) {
+       double anglPolygone = ((nbCotés -2) * 180D)/ nbCotés
+       double angleEtoile = (180D /nbCotés)
+       for(int ix = 0; ix <nbCotés; ix++) {
+          avance(longueurCoté)
+          tourneGauche(anglPolygone-angleEtoile)
+          avance(longueurCoté)
+          tourneDroite(180 - angleEtoile)
+       }    
+   }
+}
+Etoile étoile = new Etoile(13,50)
+println étoile.pointCourant()
+FormeGraphique forme = créerFormeGraphique(étoile, recentrer(), recentrer())
+//int dim = 5 + (Math.hypot(forme.largeurInitiale(), forme.hauteurInitiale())/1.3)
+int dim = étoile.maxDim() + 5
+Cadre cadre = créerCadre("étoile", dim, dim)
+Canevas canevas = cadre.canevas()
+canevas.ajoutGraphique(forme)

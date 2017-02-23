@@ -1,0 +1,11 @@
+
+
+import java.awt.Color
+
+
+Cadre cadre = new Cadre("couleur",150,150)
+ Canevas canevas = cadre.canevas()
+ canevas.arrièrePlan(Color.YELLOW)
+ChaineGraphique chaine = créerChaineGraphique("C'est bleu", Color.BLUE)
+ canevas.ajoutGraphique(chaine)
+ canevas.repeindre()

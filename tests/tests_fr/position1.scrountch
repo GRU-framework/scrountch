@@ -1,0 +1,10 @@
+ImageGraphique img = imageDepuisFichier("duke1.gif")
+Cadre cadre = créerCadre(400,400)
+Canevas canevas = cadre.canevas()
+canevas.ajoutGraphique(img)
+img.direction(-45)
+for (int ix = 0; ix < 5; ix++){
+   pause(150)
+   img.rallonger(20)
+   canevas.repeindre()
+}

@@ -1,0 +1,69 @@
+Internationalisation of code is something people may not agree on (some people think it just adds confusion)
+
+But if you are not a native speaker of English you need both to learn programming AND English!
+
+So for some people translating class and method names may alleviate the  task.
+
+So to translate class names use the "scrountch/classes" internationalisation resource.
+
+In this property file:
+
+ - keys should be canonical name of class
+
+ - value a new translated simplified class name
+
+ example:
+
+ scrountch.geom.Turtle = Tortue
+
+ Only classes that appear in this resource may have their methods translated!
+
+ So an entry like this one makes sense:
+
+ java.awt.geom.Area = java.awt.geom.Area
+
+ It means that no translated name is provided for Area (programmer should "import")
+ but some methods of this class can be translated.
+
+
+ To translate method names use the "scrountch/methods" resource.
+
+ Entries look like that:
+
+ GraphicImage#annulerRotations= clearRotation
+
+ here the key is <ClassSimpleName>#translatedMethodName = realMethodName
+
+ or
+
+ java.awt.geom.Area#contient=contains
+
+ here the key is <ClassCanonicalName>#translatedMethodName = realMethodName
+ (that cas means there was no translation in the "classes" resource)
+
+ There is also a "scrountch/messages" resource to translate messages
+
+ Now there are some details:
+
+ - inherited methods can be automaticaly translated if the super class is translated
+ then the subclasses can have access to their superclass translation
+
+ - this is true also for interface: you can configure an interface for translation BUT (there is a but) at least one class that implements
+ this interface should be translated. More precisely if
+
+  SuperClass implements FancyInterface
+
+  and
+
+  MyClass extends SuperClass
+
+  then: MyClass, SuperClass and FancyInterface should be declared
+  as "translatable" in the classes resource.
+
+  Then if you declare:
+
+  FancyInterface#schmooze = normalMethod
+
+  if you use the schmooze method on an instance of MyClass it will work.
+
+

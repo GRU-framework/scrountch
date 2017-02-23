@@ -1,0 +1,29 @@
+
+def grandeRoue(int pas, String gif) {
+    Icone marcheur = iconeDepuisFichier(gif)
+    int largeurMarcheur = marcheur.largeur()
+    int hauteurMarcheur = marcheur.hauteur()
+    int rayon = hauteurMarcheur 
+    int dimCadre = (rayon*2 ) + (hauteurMarcheur) 
+    Cadre cadre = créerCadre(dimCadre, dimCadre)
+    int posInitialeX = (dimCadre /2) - (largeurMarcheur /2 )
+     int posInitialeY =  dimCadre - hauteurMarcheur
+    ImageGraphique marcheurGraf = créerImageGraphique(marcheur, posInitialeX, posInitialeY)
+    Canevas dessin = cadre.canevas()
+    dessin.ajoutGraphique(marcheurGraf)
+    int transX = 0 ;
+    int transY = 0
+    int angle =  pas
+    while(true) {
+        pause(150)
+        transX =  rayon * Math.sin(Math.toRadians(angle))
+        transY = -rayon +(rayon * Math.cos(Math.toRadians(angle)))
+        marcheurGraf.reinitTranslation(transX, transY)
+        marcheurGraf.rotationCentrée(-pas)
+        dessin.repeindre()
+        angle += pas
+    }
+
+}
+
+grandeRoue(5, "sprite_marcheur.gif")

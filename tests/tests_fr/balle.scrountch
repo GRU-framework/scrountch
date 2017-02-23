@@ -1,0 +1,12 @@
+import java.awt.Color
+import java.awt.RadialGradientPaint
+Cadre cadre = créerCadre("balle", 300,300)
+Color[] colors = [Color.WHITE, Color.RED]
+float[] ratios = [0.0, 1.0]
+int dim = 150
+int radius = dim/2
+RadialGradientPaint paint = new RadialGradientPaint(radius, radius, radius,ratios,colors)
+EllipseD ellipse = créerEllipse( dim, dim)
+FormeGraphique forme = créerFormeGraphique(ellipse, Cell.TRANSPARENT, paint)
+Canevas dessin = cadre.canevas()
+dessin.ajoutGraphique(forme)

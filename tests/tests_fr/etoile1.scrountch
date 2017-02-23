@@ -1,0 +1,21 @@
+Tortue tortue = créerTortue()
+int nbCotés = 13
+
+double anglPolygone = ((nbCotés -2) * 180D)/ nbCotés
+double angleEtoile = (180D /nbCotés)
+double anglInterne =  180 - (anglPolygone -angleEtoile)
+int longueur = 50
+for(int ix = 0; ix <nbCotés; ix++) {
+  tortue.avance(longueur)
+  tortue.tourneGauche(180 - anglInterne)
+  tortue.avance(longueur)
+  tortue.tourneDroite(180 - angleEtoile)
+}
+
+//FormeGraphique forme = créerFormeGraphique(tortue, recentrer(), recentrer())
+FormeGraphique forme = formeGraphiqueCentrée(tortue)
+// s'appelle aussi 'plusGrandeDim'
+int dim =  tortue.maxDim() + 5
+Cadre cadre = créerCadre(dim, dim)
+Canevas canevas = cadre.canevas()
+canevas.ajoutGraphique(forme)

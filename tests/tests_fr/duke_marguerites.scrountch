@@ -1,0 +1,7 @@
+
+ ImageGraphique fond = imageDepuisFichier("marguerites.png")
+ ImageGraphique duke = imageDepuisFichier("duke2.gif", 100,100)
+ Cadre cadre = créerCadre(fond.largeurInitiale(), fond.hauteurInitiale())
+ Canevas dessin = cadre.canevas()
+ dessin.ajoutGraphique(fond)
+ dessin.ajoutGraphique(duke)

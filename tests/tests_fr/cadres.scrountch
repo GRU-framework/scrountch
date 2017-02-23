@@ -1,0 +1,7 @@
+
+ Cadre cadre = créerCadre("vecteur de Cadres", 100, 100, 3)
+ Cadre cadre2 = créerCadre("damier", 100, 100, 4, 3)
+ Label label = créerLabel("un message pour vous")
+ Bouton bouton = créerBouton("action","cliquez ICI")
+ cadre2.ajouterAuNord(label)
+ cadre2.ajouterAuSud(bouton)

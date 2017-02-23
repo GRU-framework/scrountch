@@ -1,0 +1,31 @@
+import java.awt.Color
+
+def marche(String imagefond, String gif) {
+    ImageGraphique fond = imageDepuisFichier(imagefond)
+    int largeurFond = fond.largeurInitiale() ;
+    int hauteurFond = fond.hauteurInitiale() ;
+    Icone marcheur = iconeDepuisFichier(gif)
+    int largeurMarcheur = marcheur.largeur()
+    int hauteurMarcheur = marcheur.hauteur()
+    int posInitialeX = -largeurMarcheur
+    int posInitialeY = hauteurFond - hauteurMarcheur
+    ImageGraphique marcheurGraf = créerImageGraphique(marcheur, posInitialeX, posInitialeY)
+    Cadre cadre = créerCadre(largeurFond, hauteurFond)
+    Canevas dessin = cadre.canevas()
+    dessin.arrièrePlan(Color.YELLOW)
+    dessin.ajoutGraphique(marcheurGraf)
+    while(true) {
+        marcheurGraf.retour()
+        int posX = posInitialeX
+        while(posX < largeurFond) {
+            pause(150)
+            marcheurGraf.translation(2,0)
+            posX = posX +2
+            dessin.repeindre()
+        }
+    }
+
+}
+
+marche("marguerites.png", "dinosaurs.gif")
+

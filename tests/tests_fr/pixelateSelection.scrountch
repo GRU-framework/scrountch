@@ -1,0 +1,22 @@
+import scrountch.geom.CompositeImage
+import scrountch.geom.IconImage
+import scrountch.geom.ImageUtils
+
+import java.awt.image.BufferedImage
+
+IconImage image = new IconImage("simpson.jpg")
+CompositeImage composition =  CompositeImage.factFromIcon(image)
+ImageGraphique imageGraphique = créerImageGraphique(composition)
+    int largeur = imageGraphique.largeurInitiale()
+    int hauteur = imageGraphique.hauteurInitiale()
+    Cadre cadre = créerCadre(largeur, hauteur)
+    Canevas canevas = cadre.canevas()
+    canevas.ajoutGraphique(imageGraphique)
+    canevas.siSelection({  RectangleD rect -> // fonction "anonyme": fermeture
+        BufferedImage extrait = ImageUtils.imageCapture(canevas, rect)
+       BufferedImage transformée = ImageUtils.pixelate(extrait, 3)
+       //BufferedImage transformée = ImageUtils.grey(extrait)
+       composition.superposeBuffer(rect, transformée)
+        canevas.repeindre()
+    })
+    

@@ -1,0 +1,14 @@
+FormeGraphique rectA = créerRectangleGraphique(250,100,100,100)
+FormeGraphique rectB = créerRectangleGraphique(250,100,100,100)
+Cadre cadre = créerCadre(600,600)
+Canevas canevas = cadre.canevas()
+canevas.ajoutGraphique(rectA)
+canevas.ajoutGraphique(rectB)
+rectA.direction(45)
+rectB.direction(45+90)
+for(int ix= 0 ; ix < 25 ;ix++) {
+  pause(150)
+  rectA.déplacerDe(10)
+  rectB.déplacerDe(10)
+  canevas.repeindre()
+}

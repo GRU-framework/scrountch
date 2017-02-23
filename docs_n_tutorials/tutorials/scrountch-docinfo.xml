@@ -1,0 +1,10 @@
+<mediaobject role="cover">
+  <imageobject>
+     <imagedata
+        fileref="scrountch.png"
+        format="PNG"/>
+  </imageobject>
+  <textobject>
+    <phrase>scrountch</phrase>
+  </textobject>
+</mediaobject>

@@ -1,0 +1,16 @@
+def boutonTourneur(String nomFichier) {
+    ImageGraphique imageGraphique = imageDepuisFichier(nomFichier)
+    // ceci est un "truc" qui donne une bonne approximation de la taille nécessaire
+    int dim = 5 + Math.hypot(imageGraphique.hauteurInitiale(), imageGraphique.largeurInitiale()) 
+    Cadre cadre = créerCadre("Rotations 45", dim, dim)
+    Canevas canevas = cadre.canevas()
+    Bouton bouton = créerBouton("rotation", "Cliquez pour 45°")
+    cadre.ajouterAuSud(bouton)
+    canevas.ajoutGraphique(imageGraphique)
+    bouton.siClic({ // fonction "anonyme": fermeture
+        imageGraphique.rotationCentrée(45)
+        canevas.repeindre()
+    })
+}
+
+boutonTourneur("duke0.gif")

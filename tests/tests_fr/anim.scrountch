@@ -1,0 +1,26 @@
+
+def animation(String url) {
+    ImageGraphique img = imageDepuisURL(url)
+    Cadre cadre = créerCadre(url, img.largeurInitiale(), img.hauteurInitiale())
+    Canevas canevas = cadre.canevas()
+    canevas.ajoutGraphique(img)
+    int échelle = 100
+    int compteur = 0
+    while (compteur < 20) {
+        while (échelle >= 50) {
+            img.changerEchelle(échelle)
+            pause(150)
+            canevas.repeindre();
+            échelle = échelle - 5
+        }
+        while (échelle <= 100) {
+            img.changerEchelle(échelle)
+            pause(150)
+            canevas.repeindre()
+            échelle = échelle + 5
+        }
+        compteur = compteur + 1
+    }
+}
+
+animation("file:heart.png")

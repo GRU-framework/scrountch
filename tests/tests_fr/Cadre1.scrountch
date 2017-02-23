@@ -1,0 +1,17 @@
+
+/**
+ *
+ * @author bamade
+ */
+// Date: 07/04/2016
+
+
+def afficherImage(String nomURL){
+    ImageGraphique image = imageDepuisURL(nomURL)
+    Cadre cadre = créerCadre(nomURL,image.largeurInitiale(), image.hauteurInitiale())
+    Canevas fondDessin = cadre.canevas()
+    fondDessin.ajoutGraphique(image)
+}
+
+String nom = readln("donnez l'URL de l'iconImage")
+afficherImage(nom)

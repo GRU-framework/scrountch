@@ -1,0 +1,45 @@
+import java.awt.Color
+import java.awt.RadialGradientPaint
+
+//bien sur ce serait mieux de garder ces fonctions réutilisables
+// dans un autre code
+
+def double angleInternePolygone(int nbCotés) {
+    return ((nbCotés -2) * 180D)/ nbCotés
+}
+
+def int tailleCoté(int rayon, int nbCotés) {
+    return 2 * (rayon * Math.sin(Math.PI/nbCotés))
+}
+def polygoneRotation(int rayon, int nbCotés) {
+  int coté =  tailleCoté(rayon, nbCotés)
+  double angleRotation =  180 - angleInternePolygone(nbCotés)
+  Tortue tortue = créerTortue()
+  int ix = 0
+  while(ix < nbCotés) {
+      tortue.avance(coté)
+      tortue.tourneDroite(angleRotation)
+      ix = ix +1
+  }
+  FormeGraphique graphe = créerFormeGraphique(tortue,recentrer(), recentrer())
+   int cote = tortue.hypot()
+    Color[] colors = [Color.WHITE, Color.RED]
+    float[] ratios = [0.0, 1.0]
+    int dim = rayon
+    int radius = dim/1.5
+    RadialGradientPaint peinture = new RadialGradientPaint(radius, radius, rayon* 1.2,ratios,colors)
+    graphe.remplissage(peinture)
+  Cadre cadre = créerCadre(cote, cote)
+  Canevas dessin = cadre.canevas()
+  dessin.ajoutGraphique(graphe)
+  int iy = 0 
+  while(iy < (360/5)){
+     pause(150)
+     graphe.rotationCentrée(5)
+     dessin.repeindre()
+     iy = iy + 1
+  }
+  
+ }
+
+ polygoneRotation(300,12)
