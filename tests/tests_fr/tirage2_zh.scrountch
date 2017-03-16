@@ -1,0 +1,7 @@
+//entier maximum = 49
+整数 最大值 = 49
+//_boucle(entier index = 0 ; index < 6 ; index = index +1){
+循环 ( 整数 数 = 0 ; 数 < 6; 数 = 数 +1 ) {
+//    afficher(nombreAuHasard(maximum) +1 )
+    显示 ( 随机数 (最大值) +1 )
+}

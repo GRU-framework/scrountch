@@ -113,6 +113,12 @@ class SFrame extends JFrame {
         }
         this.setIconImage(GlobalCommons.scrountchIcon_small.image)
         this.background = Color.LIGHT_GRAY
+        String language = System.getProperty("user.language")
+        Locale loc = new Locale(language)
+        ComponentOrientation orientation = ComponentOrientation.getOrientation(loc)
+        if((orientation == ComponentOrientation.RIGHT_TO_LEFT) && !  GlobalCommons.NO_RL_ORIENTATION) {
+            this.applyComponentOrientation(orientation)
+        }
         LayoutManager manager = new GridLayout(lines, cols, 3,3)
         Panel centre = new Panel(manager)
         centre.background = Color.GRAY

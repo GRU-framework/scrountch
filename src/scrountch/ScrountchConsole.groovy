@@ -8,7 +8,7 @@ import org.codehaus.groovy.control.customizers.ASTTransformationCustomizer
 import org.codehaus.groovy.runtime.StackTraceUtils
 
 import javax.swing.*
-import java.util.logging.Level
+import java.awt.*
 import java.util.prefs.Preferences
 /**
  * a subclass of GroovyConsole with some additional features:
@@ -61,6 +61,36 @@ options:
             return
         }
 
+        // Trying to modify the fonts to accept chinese and Emojis!
+        /*
+        System.setProperty("swing.aatext", "true")
+
+        String fontName = System.getProperty("scrountch.font")
+        if (fontName == null) {
+            Font[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
+for (Font font: fonts) {
+    if (font.canDisplay(0x1F600) && font.canDisplay()) {
+        fontName = font.getName()
+        break
+    }
+}
+        }
+        String fontSizeString = System.getProperty("scrountch.fontSize")
+        int fontSize = 15
+        if( fontSizeString != null) {
+            try {
+                fontSize = Integer.parseInt(fontSizeString)
+            } catch (Exception exc) {
+                // nothing
+                GlobalCommons.LOG.log(Level.WARNING, "scrountch.fontSize", exc)
+            }
+        }
+        // how to have this font as monospaced?
+        Font curFont =  Font.decode("${fontName}-$fontSize")
+
+        */
+        // todo: Font editorFont = new Font("Apple Color Emoji", Font.PLAIN, 15)
+
         // full stack trace should not be logged to the output window - GROOVY-4663
         java.util.logging.Logger.getLogger(StackTraceUtils.STACK_LOG_NAME).useParentHandlers = false
 
@@ -82,14 +112,27 @@ options:
         // use setIconImage
         console.useScriptClassLoaderForScriptExecution = true
         console.run()
+        String language = System.getProperty("user.language")
+        Locale loc = new Locale(language)
+        ComponentOrientation orientation = ComponentOrientation.getOrientation(loc)
+        if(orientation == ComponentOrientation.RIGHT_TO_LEFT && ! GlobalCommons.NO_RL_ORIENTATION) {
+            //console.frame.rootPane.applyComponentOrientation(orientation)
+            console.inputArea.setComponentOrientation(orientation)
+        }
+        String edFontName = GlobalCommons.FONT_NAME
+        if(edFontName != null) {
+            Font editorFont = Font.decode(edFontName)
+            console.inputEditor.getTextEditor().setFont(editorFont)
+        }
         if (args.length == 1) console.loadScriptFile(args[0] as File)
     }
 
-    public ScrountchConsole(ClassLoader loader, Binding binding) {
+
+    public ScrountchConsole(ClassLoader loader, Binding binding ) {
         super(loader, binding)
         //println loader
-        groovyFileFilter = new ScrountchFileFilter()
-        showScriptInOutput = scrPrefs.getBoolean('showScriptInOutput', false)
+          groovyFileFilter = new ScrountchFileFilter()
+         showScriptInOutput = scrPrefs.getBoolean('showScriptInOutput', false)
     }
 
     void newScript(ClassLoader parent, Binding binding) {
@@ -100,6 +143,7 @@ options:
         shell = ShellGen.factory(parent, binding, config)
     }
 
+
     void updateTitle() {
         if (frame.properties.containsKey('title')) {
             if (scriptFile != null) {
@@ -108,6 +152,7 @@ options:
                 frame.title = 'ScrountchConsole'
             }
         }
+        //println edFont
     }
 
     boolean askToSaveFile() {
@@ -167,4 +212,5 @@ options:
         }
 
     }
+
 }

@@ -16,6 +16,74 @@ ones: in Cell and in Collisions -> think!
  - do the scrountch jar
  - and utility to create an application jar
 
+/////////// IMPORTANT CODE TO MODIFY KEY WORDS (thanks to G.LAFORGE)
+
+
+Groovy web console
+subscribe to the feed 	Subscribe
+to this
+site
+
+tweet this snippet 	Tweet
+this
+script
+Custom antlr parser plugin
+Published 8 years ago by glaforge
+Actions  ? Edit in console Back to console Show/hide line numbers View recent scripts
+view source
+print
+?
+import org.codehaus.groovy.control.*
+import org.codehaus.groovy.antlr.*
+import org.codehaus.groovy.syntax.*
+
+/*
+Technique useful to avoid overriding all possible means to read/parse sources (File, String, CodeSource, InputStream...)
+A CompilerConfiguration definining a custom ParserPlugin / ParserPluginFactory can be passed to all: GroovyShell, GCL, etc.
+Single place for modifying the input "text", as long as we pass this CompilerConfiguration.
+*/
+
+class SourceModifierParserPlugin extends AntlrParserPlugin {
+Reduction parseCST(SourceUnit sourceUnit, Reader reader) throws CompilationFailedException {
+def text = modifyTextSource(reader.text)
+StringReader stringReader = new StringReader(text)
+super.parseCST(sourceUnit, stringReader)
+}
+
+String modifyTextSource(text) {
+def lines = text.tokenize('\n')*.trim()
+def modified = lines.collect { line ->
+def words = line.trim().tokenize()
+def modified = words.join('(') + ')' * (words.size() - 1)
+}.join('\n')
+println modified
+modified
+}
+}
+
+class SourcePreProcessor extends ParserPluginFactory {
+ParserPlugin createParserPlugin() {
+new SourceModifierParserPlugin()
+}
+}
+
+def parserPluginFactory = new SourcePreProcessor()
+def conf = new CompilerConfiguration(pluginFactory: parserPluginFactory)
+
+def binding = new Binding([
+tell: { println it },
+me: { it + ' you' },
+them: { it + ' everybody' },
+hello: "Hello",
+goodbye: "Goodbye"
+])
+def shell = new GroovyShell(binding, conf)
+def result = shell.evaluate("""
+tell me hello
+tell me goodbye
+tell them goodbye
+""")
+
 
 
 ///////////// END

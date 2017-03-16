@@ -35,12 +35,22 @@ class GlobalCommons {
      */
     public static final double KEEP = Integer.MIN_VALUE + 16
 
+    /**
+     * Name of Console Font
+     */
+    public static String FONT_NAME = System.getProperty("scrountch.consoleFont")
 
     /**
      * the global logger for all scrountch codes
      */
     public static Logger LOG= Logger.getLogger("scrountch")
 
+    /**
+     * if true keyword won't be translated
+     */
+    public static boolean NO_KW_TRANSLATION = Boolean.getBoolean("scrountch.noKWtranslation")
+
+    public static boolean NO_RL_ORIENTATION = Boolean.getBoolean("scrountch.noRLorientation")
     /**
      * the user Locale: very important for names translations
      */

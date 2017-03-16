@@ -29,14 +29,30 @@ plus complexes dont les détails sont donnés dans cette notice. On a donc ici u
 //Un résumé se trouve en fin de ce document dans le chapitre "éléments de programmation".
 
 Une caractéristique remarquable de +scrountch+ est que ses codes  sont automatiquement traduits dans la langue de l'utilisateur.
-Les codes d'origines ont des noms Anglais mais un dictionnaire permet leur traduction: le programmeur débutant
-n'a donc que très peu de mots anglais à retenir pour programmer et peut se concentrer sur la logique de son code.
+Les codes d'origines ont des noms Anglais mais un dictionnaire permet leur traduction. 
 
-Les quelques mots anglais restants concernent la structuration des codes (+if+, +while+, ..) et les types fondamentaux
-(+int+, +double+, +String+ ,...) - C'est donc peu de choses à retenir -
+Il y a deux types de traductions:
+
+- traduction des mots-clefs du langage: ceci concerne les "mots" qui structurent le langage.
+Ces quelques mots anglais  concernent la structuration des codes (+if+, +while+, ..) et les types fondamentaux
+(+int+, +double+, +String+ ,...) - C'est donc peu de choses à retenir ... mais il est possible de programmer avec une traduction-
++
+Par exemple les sources en Anglais utilisent le mot-clef +if+ pour aiguiller un comportement du code
+en fonction d'un test. 
+Le programmeur débutant peut donc  utiliser ce mot anglais mais aussi sa traduction qui est +\_si+.
+(les mots-clefs de structuration ont une traduction qui commencent par le caractère "_" (soulignement):
+cela permet de les repérer -et d'éviter des conflits de noms avec des variables- échappent à cette règle les mots
+qui concernent des types et des valeurs: +entier, octet, caractère, booléen, Chaine, VRAI, FAUX, NULL+ et la fonction +afficher+)
++
+Dans les exemples nous donneront en commentaire l'original en Anglais.
+
+- traduction des codes eux-mêmes
 
 Dans certains cas (messages d'erreur) il se peut que les noms sous-jacents  des codes apparaissent. Pour cette raison
 ce petit manuel donne à chaque fois les deux noms du code: le nom en Fançais traduit et le nom "réel" .
+
+Pour plus de renseignements sur les traductions voir 
+xref:ressources[le chapitre "ressources"]
 
 La présentation de cette librairie est progressive: les mêmes fonctionnalités sont présentées plusieurs fois avec des difficultés progressives.
 A la fin un programmeur expérimenté pourra se mettre à la programmation orientée objet et enrichir les codes
@@ -73,6 +89,20 @@ de script dans ce répertoire. Créer des fichiers avec des noms se terminant  e
 Pour les utilisateurs avancés nous conseillons la création d'un répertoire +bin+ pour abriter des binaires générés par compilation.
 
 ==============================================
+
+[NOTE]
+==================================================
+Il est également possible de lancer la console +scrountch+ depuis une fenêtre de commmande système
+( un "terminal").
+
+La commande est alors:
+
+	java -jar scrountchConsole.jar
+
+l'avantage de cette approche est qu'elle permet de lancer l'exécution avec des variables d'environnement:
+xref:properties[voir ICI]
+
+==================================================
 
 // scrountch.zip -> scrountch.jar + 2 scripts
 
@@ -161,7 +191,7 @@ L'exécution affiche sur la console une trace de l'objet créé:
 ************************************
 Ecrire une fonction : +Cadre cadreCarré(String chaineNumérique)+
 
-Le type +String+ désigne une chaîne de caractère (comme ++"bonjour"++)
+Le type +Chaine+ (original: +String+) désigne une chaîne de caractère (comme ++"bonjour"++)
 
 Cette fonction crée un cadre carré (largeur et hauteur sont les mêmes).
 L'appel de cette fonction pourrait se faire de la manière suivante : ++créerCadre("300")++.
@@ -169,11 +199,15 @@ L'appel de cette fonction pourrait se faire de la manière suivante : ++créerCa
 La raison pour laquelle nous avons choisi un paramètre chaîne au lieux d'un paramètre entier (qui aurait été ++créerCadre(300)++) est
 que l'on va permettre à l'utilisateur de saisir la dimension demandée. Cette requête se fait par le code:
 
-  String saisie = readln("veuillez saisir la dimension du Cadre")
+  Chaine saisie = readln("veuillez saisir la dimension du Cadre")
+
+(ou ++String saisie = ....++ si on utilise les mots-clefs en version originale)
 
 Il restera à transformer cette chaîne en un nombre. Ce qui se fait par :
 
- int dimension = Integer.parseInt(chaineNumérique).
+ entier dimension = Integer.parseInt(chaineNumérique).
+
+(ou ++int  dimension = ....++)
 
 xref:exoFunc[Lien vers proposition corrigé: ]
 
@@ -218,15 +252,16 @@ Or une fois qu'on a créé une +ImageGraphique+ on peut connaître sa taille:
 
 [code, groovy]
 ----------------------------------------
-int largeur = image.largeurInitiale()
-int hauteur = image.hauteurInitiale()
+entier largeur = image.largeurInitiale()
+entier hauteur = image.hauteurInitiale()
+// on peut utiliser int au lieu de entier
 ----------------------------------------
 
 (la raison pour laquelle on a quelque chose comme "largeurInitiale" est qu'on pourra ensuite déformer cette image).
 
 Donc en exercice:
 
-- écrire une fonction +afficherImage(String chaîneURL)+ qui:
+- écrire une fonction +afficherImage(Chaine chaîneURL)+ qui:
 
 ** charge une image graphique depuis la +chaîne URL+
 
@@ -234,7 +269,7 @@ Donc en exercice:
 
 ** affiche  l'image graphique dans le canevas
 
-- pour tester utiliser la fonction +readln(String invite)+ par exemple en codant : ++ String nomURL = readln("taper une URL")++.
+- pour tester utiliser la fonction +readln(Chaine invite)+ par exemple en codant : ++ Chaine nomURL = readln("taper une URL")++.
 Puis invoquer la fonction +afficherImage+ avec le résultat.
 
 xref:exoImage1[Lien vers proposition corrigé: ]
@@ -289,10 +324,10 @@ Exemple:
 
 [code,groovy]
 --------------------------------
-int coorX = 10
-int coorY = 20
-int largeur = 75
-int hauteur = 25
+entier coorX = 10
+entier coorY = 20
+entier largeur = 75
+entier hauteur = 25
 FormeGraphique unRectangle = créerRectangleGraphique(coorX, coorY, largeur, hauteur)
 --------------------------------
 
@@ -317,7 +352,7 @@ Cet exercice concerne l'utilisation de tableaux.
 
 Pour créer un Polygone on a la fonction
 
-  FormeGraphique unPolygone = créerPolygoneGraphique(int[] coordonnéesX, int[] coordonnéesY)
+  FormeGraphique unPolygone = créerPolygoneGraphique(entier[] coordonnéesX, entier[] coordonnéesY)
 
 Les tableaux passés en argument doivent être de même taille. Chaque "sommet" +N+ du polygone se trouve en
 ++coordonnéesX[N]++ et ++coordonnéesY[N]++.
@@ -362,7 +397,7 @@ D'abord la fixation d'échelle à la création de l'image Graphique. L'échelle 
 
 Cet exercice concerne l'utilisation d'un branchement de choix (++if++)
 
-écrire un fonction : ++def adapterImage(String nomURL)++
+écrire un fonction : ++def adapterImage(Chaine nomURL)++
 
 l'objectif est de créer un +Cadre+ de taille fixe (avec un +Canevas+ de 300x300 par ex.)
 de charger une image de taille quelconque et de la redimensionner pour qu'elle rentre dans le +Canevas+.
@@ -396,7 +431,7 @@ On peut aussi opérer un changement d'échelle en cours d'exécution:
 
 Cet exercice concerne l'utilisation de boucles.
 
-Créer une fonction ++def animation(String url) ++.
+Créer une fonction ++def animation(Chaine url) ++.
 L'objectif va être d'animer l'image désignée par l'URL en la faisant régulièrement rapetisser puis grossir.
 
 Calibrer soigneusement le temps de +pause+ en fonction des caractéristiques de votre ordinateur (++pause (150)++ peut être un bon choix).
@@ -471,10 +506,10 @@ la raison de cette technique pour la tortue sera expliquée un peu plus loin.
 .Exercice : boucles, tortue
 ***********************************************
 
-L'objectif est de créer une fonction: ++def polygoneParTortue(int rayon, int nbCotés)++
+L'objectif est de créer une fonction: ++def polygoneParTortue(entier rayon, entier nbCotés)++
 qui dessine un polygone régulier avec une tortue. Pour les détails de calcul voir l'article Wikipedia "Polygone régulier"
 
-Pour simplifier les calculs on peu aussi écrire à la place une fonction +def polygoneParTortue(int longueurCoté, int nbCotés)+
+Pour simplifier les calculs on peu aussi écrire à la place une fonction +def polygoneParTortue(entier longueurCoté, entier nbCotés)+
 dans ce cas la seule chose à calculer est l'angle de roation de la tortue chaque fois qu'elle a avancé de +longueurCoté+.
 
 N'oubliez pas pour positionner votre tortue d'utiliser +formeGraphiqueCentrée+ ou +recentrer()+ si vous voulez fixer les coordonnées au centre du +Canevas+
@@ -573,7 +608,7 @@ Autre forme possible de ce centrage avec des indications particulières de posit
 
 Dès que vos codes deviennent un peu complexe vous pouvez désirer mettre des traces pour "visualiser" le déroulement de votre code.
 
-Bien entendu vous pouvez rajouter des +println+ de messages dans vos codes ... et les enlever ensuite.
+Bien entendu vous pouvez rajouter des +afficher+ ( nom d'origine: +println+) de messages dans vos codes ... et les enlever ensuite.
 
 Une meilleur statégie est de mettre en place des traces qui resteront dans votre code et qui seront activées ou désactivées.
 
@@ -705,8 +740,8 @@ on peut créer d'abord la forme de base puis ensuite la +FormeGraphique+)
 // l'image de base s'appelle une Icone
 // on pourrait la créer aussi à partir d'un URL
 Icone icone = iconeDepuisFichier(nomFichier)
-int largeur = icone.largeur() ;
-int hauteur = icone.hauteur()
+entier largeur = icone.largeur() ;
+entier hauteur = icone.hauteur()
 // on calcule la position de l'image graphique puis
 ImageGraphique marcheur = créerImageGraphique(icone, posInitialeX, posInitialeY)
 // maintenant une boucle d'animation
@@ -881,10 +916,10 @@ Prenons un exemple de code situé dans un script +scrountch+ :
 
 [code,groovy]
 ----------------------------------------------------
-def boutonTourneur(String nomFichier) {
+def boutonTourneur(Chaine nomFichier) {
     ImageGraphique imageGraphique = imageDepuisFichier(nomFichier)
     //  un "truc" qui donne une  approximation de la taille nécessaire
-    int dim = 5 + Math.hypot(imageGraphique.hauteurInitiale(), imageGraphique.largeurInitiale())
+    entier dim = 5 + Math.hypot(imageGraphique.hauteurInitiale(), imageGraphique.largeurInitiale())
     Cadre cadre = créerCadre("Rotations 45", dim, dim)
     Canevas canevas = cadre.canevas()
     Bouton bouton = créerBouton("rotation", "Cliquez pour 45°")
@@ -929,7 +964,7 @@ Ce qui suppose que l'on sache définir une telle fermeture: il y a une syntaxe p
 [code,groovy]
 ---------------------------------------------
 canevas.siClic(
- { Canevas cible, int x, int y ->
+ { Canevas cible, entier x, entier y ->
     // code qui exploite x et y : l'endroit où la souris a cliqué
  })
 ---------------------------------------------
@@ -951,7 +986,7 @@ d'enregistrer le même code auprès de tous les +Canevas+.
 
 [code,groovy]
 ----------------------------------
-Fermeture fermeture = { Canevas cible, int x, int y ->
+Fermeture fermeture = { Canevas cible, entier x, entier y ->
    //code: dans ce cas ces coordonnées s'ajouterons aux coordonnées x, y.
    //Le centrage est particulièrement délicat 
 }
@@ -963,7 +998,7 @@ Note: il est possible d'avoir sur un bouton un code avec paramètre:
 
 [code,groovy]
 -------------------------------------
-Fermeture fermeture = { String nomBouton ->
+Fermeture fermeture = { Chaine nomBouton ->
   // code
 }
 bouton1.siClic(fermeture)
@@ -995,10 +1030,11 @@ Pour faire un tableau à deux dimensions qui représente un "modèle" du damier 
 [code,groovy]
 -----------------------------------
 // un tableau remplis de zéros
-int[][] modèle = new int[lignes][colonnes]
+//int[][] modèle = new int[lignes][colonnes]
+entier[][] modèle = _creation entier[lignes][colonnes]
 
 //"cellule" à la deuxième ligne, première colonne
-int val = modèle[1][0]
+entier val = modèle[1][0]
 // on le fera correspondre à cadre.canevas(1,0)
 -----------------------------------
 
@@ -1141,7 +1177,8 @@ Un premier essai:
 --------------------------------------------
 import java.awt.Color
 
-Cadre cadre = new Cadre("couleur",150,150)
+//Cadre cadre = new Cadre("couleur",150,150)
+Cadre cadre = _creation Cadre("couleur",150,150)
 Canevas canevas = cadre.canevas()
 canevas.arrièrePlan(Color.YELLOW)
 canevas.repeindre()
@@ -1165,10 +1202,13 @@ nom est ++setForeground++)
 Si la classe +java.awt.Color+ offre quelques couleurs standard il vous est possible de définir votre propre couleur.
 
 Exemple: +Color doré = new Color(212,175,55)+
+(ou en traduisant: +Color doré = _creation Color(212,175,55)+)
+
+
 
 Ici:
 
-- On a créé une couleur (RGB: red/green/blue) par l'invocation d'un _constructeur_ : opération +new+
+- On a créé une couleur (RGB: red/green/blue) par l'invocation d'un _constructeur_ : opération +new+ (traduit par +_creation+)
 
 - Les paramètres sont des entiers entre 0 et 255. Dans l'ordre:  rouge, vert, bleu. On peut aussi rajouter un facteur de transparence en 4° argument.
 Ainsi +new Color(0,0,0,0)+ créera une couleur complètement transparente (255 indiquerait une couleur complètement opaque).
@@ -1227,8 +1267,8 @@ import java.awt.RadialGradientPaint
 Cadre cadre = créerCadre("balle", 300,300)
 Color[] colors = [Color.WHITE, Color.RED]
 float[] ratios = [0.0, 1.0]
-int dim = 150
-int radius = dim/2
+entier dim = 150
+entier radius = dim/2
 RadialGradientPaint paint = new RadialGradientPaint(radius, radius, radius,ratios,colors)
 EllipseD ellipse = créerEllipse(dim, dim)
 FormeGraphique forme = créerFormeGraphique(ellipse, 10,10 Cell.TRANSPARENT, paint)
@@ -1324,11 +1364,13 @@ Exemple de classe simple:
 [code,groovy]
 -----------------------------------------
 // ne pas mettre de caractère accentué dans les noms de classe
-class UneEtoile extends Tortue{
-   UneEtoile(int nbCotés, int longueurCoté) {
+//class UneEtoile extends Tortue{
+_classe UneEtoile _étend Tortue{
+   UneEtoile(entier nbCotés, entier longueurCoté) {
        double anglPolygone = ((nbCotés -2) * 180D)/ nbCotés
        double angleEtoile = (180D /nbCotés)
-       for(int ix = 0; ix <nbCotés; ix++) {
+       //for(int ix = 0; ix <nbCotés; ix++) {
+       _boucle (entier ix = 0; ix <nbCotés; ix++) {
           avance(longueurCoté)
           tourneGauche(anglPolygone-angleEtoile)
           avance(longueurCoté)
@@ -1355,12 +1397,13 @@ Maintenant si vous écrivez un autre script comme:
 
 [code,groovy]
 -----------------------------------------
-UneEtoile étoile = new UneEtoile(13,50)
-println étoile.pointCourant()
+//UneEtoile étoile = new UneEtoile(13,50)
+UneEtoile étoile = _creation UneEtoile(13,50)
+afficher étoile.pointCourant()
 //FormeGraphique forme = créerFormeGraphique(étoile, recentrer(), recentrer())
 FormeGraphique forme = formeGraphiqueCentrée(étoile)
 // s'appelle aussi plusGrandeDim (ajout sur Forme/Shape)
-int dim = étoile.maxDim() + 5
+entier dim = étoile.maxDim() + 5
 Cadre cadre = créerCadre("étoile", dim, dim)
 Canevas canevas = cadre.canevas()
 canevas.ajoutGraphique(forme)
@@ -1405,6 +1448,7 @@ preneur de décision
 === Liste des classes et méthodes
 
 Chaque désignation en français est suivie du nom original en Anglais qui a été traduit. Dans certains cas il n'y a pas de traduction en français.
+Les mots-clefs (et +String+)  ne sont pas traduits.
 
 Les codes qualifiés de "fonction" sont en fait des méthodes statiques de la class +Fab+.
 
@@ -2001,7 +2045,136 @@ Dessine une +Forme+ (=> +Shape+) sur l'image courante.
 - ++superposeText(double x, double y, String text, Font font, Color color, Paint fillPaint, Stroke stroke)++
 dessine un texte sur l'image courante.
 
-=== Corrigés
+= Annexes
+
+[[properties]]
+== Variables d'environnement
+
+Ce sont des paramètres de lancement de l'application: un utilisateur peut vouloir changer certains comportements de +scrountch+
+comme la langue dans laquelle il veut rédiger, la police de caractère à utiliser sur la console, etc.
+
+Il y a deux moyens d'initialiser ces variables:
+
+- soit elles sont initialisées dans le contexte de votre système d'exploitation: ici les techniques diffèrent selon que vous soyez
+sur un système WINXXX ou un système dérivé d'UNIX (IOS, LINUX,...). Vous devez donc apprendre à fixer ces variables
+dans votre environnement système.
+
+- soit elles sont passées an argument au lancement de java (dans le cas où vous démarrez scrountch depuis une console
+système (terminal shell). Exemple de lancement
+
+	java -Dscrountch.noKWtranslation=true -jar scrountchConsole.jar
+
+(Ici on démarre l'exécution de la +scrountchConsole+ en invoquant +java -jar+ 
+mais en positionnant une variable dans l'environnement de l'exécution (++-Dvariable=valeur++)
+
+Les variables que vous pouvez utiliser:
+
+- ++user.language++ (et ++user.country++) : ce sont des variables standard de Java qui servent à préciser la langue que l'on veut utiliser.
+On peut, par exemple, se trouver sur un ordinateur dont la langue par défaut et l'anglais ou l'arabe alors qu'on veut utiliser
+le français dans le contexte de cette exécution: on utilisera alors ++-Duser.language=fr++ . Problème: il faut connaître les codes standard
+des noms de langues (comme +fr, en, zh, ar, ...+ )
++
+ATTENTION: les traductions des codes dépendent de ces valeurs. Si vous n'avez pas une "ressource de traduction" adaptée à votre langue
+les noms resteront en Anglais par défaut. (Voir le chapitre
+link:ressources[ressources] )
+
+- ++scrountch.noKWtranslation++ : permet de supprimer la traduction des mots-clefs du langage. Exemple: ++-Dscrountch.noKWtranslation=true++
+
+- ++scrountch.noRLorientation++: cas très particulier, si votre langue s'écrit de droite à gauche, vous demandez à ce que la console 
+soit quand même gérée avec une disposition des caractères de gauche à droite (en fait ceci n'est surtout utile que dans certains codes
+qui précédent la création de +Cadre+s et en utilisant : ++System.setProperty("scrountch.noRLorientation", "true")++ )
+
+- ++scrountch.consoleFont++ : permet de changer la police utilisée dans la Console. La valeur est de la forme +nomPolice-taille+ .
+Exemple: ++-Dscrountch.consoleFont="Apple Color Emoji-20"++
+
+//todo: explain logging
+
+[[ressources]]
+== Ressources
+
+On qualifie de "ressources" des fichiers qui permettent de paramétrer le comportement de l'application.
+
+La plupart sont des fichiers de propriétés ("++xxx.properties++")
+
+Voici par exemple un fichier +keywords_fr.properties+ (disposé dans un répertoire nommé +scrountch+) et qui permet 
+les traductions des mots-clefs:
+
+--------------------------------------
+# modifier les mots-clefs: les commentaires commencent par un # en début de ligne
+# forme: traduction=mot-clef-original
+_enTantQue=as
+_entantque=as
+#assert
+_stop=break
+_cas=case
+_capture=catch
+_classe=class
+#const
+#continue
+#def
+_parDefaut=default
+_pardefaut=default
+_parDéfaut=default
+#do
+_sinon=else
+#enum
+_étend=extends
+_etend=extends
+FAUX=false
+_enTousCas=finally
+_entouscas=finally
+_boucle=for
+#goto
+_si:if
+_implante=implements
+#import
+#in
+_instanceDe=instanceof
+_instancede=instanceof
+#interface
+_création=new
+_creation=new
+#null
+NULL=null
+#package
+_renvoi=return
+#super
+_selon=switch
+_objetCourant=this
+_objetcourant=this
+#ceci=this
+_incident=throw
+_propage=throws
+#trait
+VRAI=true
+_essai=try
+_tantQue=while
+_tantque=while
+
+# types
+entier=int
+#short
+octet=byte
+caractère=char
+caractere=char
+#double
+#float
+booléen=boolean
+booleen=boolean
+
+# les suivants ne sont pas des mots-clefs du langage
+Chaîne=String
+Chaine=String
+
+afficher=println
+--------------------------------------
+
+Les modifications d'une telle ressource sont possibles et supposent la modification du jar
+xref:open_source[voir ICI]
+
+A FAIRE: fichier properties pour le logging
+
+== Corrigés
 
 [[exoFunc]]
 .fonction simple
@@ -2009,13 +2182,16 @@ dessine un texte sur l'image courante.
 
 [code,groovy]
 -------------------------------------------------
-def Cadre cadreCarré(String chaine) {
-    int taille = Integer.parseInt(chaine)
+//def Cadre cadreCarré(String chaine) {
+def Cadre cadreCarré(Chaine chaine) {
+    //int taille = Integer.parseInt(chaine)
+    entier taille = Integer.parseInt(chaine)
     Cadre res = créerCadre(chaine +" x "+ chaine, taille, taille)
     return res
 }
 
-String saisie = readln("donner dimension cadre")
+//String saisie = readln("donner dimension cadre")
+Chaine saisie = readln("donner dimension cadre")
 cadreCarré(saisie)
 -------------------------------------------------
 
@@ -2026,14 +2202,16 @@ cadreCarré(saisie)
 ***********************************************
 [code,groovy]
 ------------------------------------------------------------
-def afficherImage(String nomURL){
+//def afficherImage(String nomURL){
+def afficherImage(Chaine nomURL){
     ImageGraphique image = imageDepuisURL(nomURL)
     Cadre cadre = créerCadre(nomURL, image.largeurInitiale(), image.hauteurInitiale())
     Canevas fondDessin = cadre.canevas()
     fondDessin.ajoutGraphique(image)
 }
 
-String nom = readln("donnez l'URL de l'image") 
+//String nom = readln("donnez l'URL de l'image") 
+Chaine nom = readln("donnez l'URL de l'image") 
 afficherImage(nom)
 ------------------------------------------------------------
 ***********************************************
@@ -2044,15 +2222,18 @@ afficherImage(nom)
 ***********************************************
 [code,groovy]
 -------------------------------------
-def afficherPolygone(int[] xs, int[] ys) {
+//def afficherPolygone(int[] xs, int[] ys) {
+def afficherPolygone(entier[] xs, entier[] ys) {
     Cadre cadre = créerCadre("polygone", 300,300)
     Canevas canevas = cadre.canevas()
     FormeGraphique forme = créerPolygoneGraphique(xs, ys)
     canevas.ajoutGraphique(forme)
 }
 
-int[] lesX = [100,200,200, 100]
-int[] lesY = [100,100,200, 200]
+//int[] lesX = [100,200,200, 100]
+//int[] lesY = [100,100,200, 200]
+entier[] lesX = [100,200,200, 100]
+entier[] lesY = [100,100,200, 200]
 afficherPolygone(lesX, lesY)
 -------------------------------------
 
@@ -2064,27 +2245,28 @@ afficherPolygone(lesX, lesY)
 *******************************************************
 [code,groovy]
 -------------------------------------------------------
-def adapterImage(String nomURL){
-    int hauteurCadre = 300
-    int largeurCadre = 300
+def adapterImage(Chaine nomURL){
+    entier hauteurCadre = 300
+    entier largeurCadre = 300
     ImageGraphique image = imageDepuisURL(nomURL)
     Cadre cadre = créerCadre(nomURL,largeurCadre, hauteurCadre)
-     int hauteurImage = image.hauteurInitiale()
-    int largeurImage = image.largeurInitiale()
+     entier hauteurImage = image.hauteurInitiale()
+    entier largeurImage = image.largeurInitiale()
     double echelleHauteur = (hauteurCadre * 100D)  / hauteurImage
     double echelleLargeur = (largeurCadre * 100D) / largeurImage
-    int plusPetitRapport = echelleLargeur
+    entier plusPetitRapport = echelleLargeur
     if(echelleHauteur < echelleLargeur) {
       plusPetitRapport = echelleHauteur
     }
-    if(plusPetitRapport < 100) {
+    //if(plusPetitRapport < 100) {
+    _si(plusPetitRapport < 100) {
       image.changerEchelle(plusPetitRapport)
     }
     Canevas fondDessin = cadre.canevas()
     fondDessin.ajoutGraphique(image)
 }
 
-String nom = readln("donnez l'URL de l'image") 
+Chaine nom = readln("donnez l'URL de l'image") 
 adapterImage(nom)
 -------------------------------------------------------
 *******************************************************
@@ -2095,21 +2277,22 @@ adapterImage(nom)
 [code,groovy]
 -------------------------------------------------------
 
-def animation(String url) {
+def animation(Chaine url) {
     ImageGraphique img = imageDepuisURL(url)
     Cadre cadre = créerCadre(url, img.largeurInitiale(), img.hauteurInitiale())
     Canevas canevas = cadre.canevas()
     canevas.ajoutGraphique(img)
-    int échelle = 100
-    int compteur = 0
-    while (compteur < 20) {
-        while (échelle >= 50) {
+    entier échelle = 100
+    entier compteur = 0
+    //while (compteur < 20) {
+    _tantQue (compteur < 20) {
+        _tantQue (échelle >= 50) {
             img.changerEchelle(échelle)
             pause(150)
             canevas.repeindre();
             échelle = échelle - 5
         }
-        while (échelle <= 100) {
+        _tantQue (échelle <= 100) {
             img.changerEchelle(échelle)
             pause(150)
             canevas.repeindre()
@@ -2128,29 +2311,29 @@ animation("file:heart.png")
 ********************************************************
 [code,groovy]
 -----------------------------------------------------
-//un fonction pour calculer l'angle interne d'un poluygone régulier
-def double angleInternePolygone(int nbCotés) {
+//une fonction pour calculer l'angle interne d'un polygone régulier
+def double angleInternePolygone(entier nbCotés) {
  return ((nbCotés -2) * 180D)/ nbCotés
 }
 
 //taille du coté d'un polygone régulier en focntion du rayon
-def int tailleCoté(int rayon, int nbCotés) {
+def entier tailleCoté(entier rayon, entier nbCotés) {
    return 2 * (rayon * Math.sin(Math.PI/nbCotés))
 }
 
-def polygoneParTortue(int rayon, int nbCotés) {
-  int coté = tailleCoté(rayon, nbCotés)
+def polygoneParTortue(entier rayon, entier nbCotés) {
+  entier coté = tailleCoté(rayon, nbCotés)
   double angleRotation =  180 - angleInternePolygone(nbCotés)
   Tortue tortue = créerTortue()
-  int ix = 0
-  while(ix < nbCotés) {
+  entier ix = 0
+  _tantQue (ix < nbCotés) {
       tortue.avance(coté)
       tortue.tourneDroite(angleRotation)
       ix = ix +1
   }
   //FormeGraphique graphe = créerFormeGraphique(tortue, recentrer(), recentrer())
   FormeGraphique graphe = formeGraphiqueCentrée(tortue)
-  int dim = tortue.maxDim() + 5
+  entier dim = tortue.maxDim() + 5
   Cadre cadre = créerCadre(dim, dim)
   Canevas dessin = cadre.canevas()
   dessin.ajoutGraphique(graphe)
@@ -2166,23 +2349,23 @@ def polygoneParTortue(int rayon, int nbCotés) {
 [code,groovy]
 -------------------------------------------------------
 
-def marche(String imagefond, String gif) {
+def marche(Chaine imagefond, Chaine gif) {
     ImageGraphique fond = imageDepuisFichier(imagefond)
-    int largeurFond = fond.largeurInitiale() ;
-    int hauteurFond = fond.hauteurInitiale() ;
+    entier largeurFond = fond.largeurInitiale() ;
+    entier hauteurFond = fond.hauteurInitiale() ;
     Icone marcheur = iconeDepuisFichier(gif)
-    int largeurMarcheur = marcheur.largeur()
-    int hauteurMarcheur = marcheur.hauteur()
-    int posInitialeX = -largeurMarcheur
-    int posInitialeY = hauteurFond - hauteurMarcheur
+    entier largeurMarcheur = marcheur.largeur()
+    entier hauteurMarcheur = marcheur.hauteur()
+    entier posInitialeX = -largeurMarcheur
+    entier posInitialeY = hauteurFond - hauteurMarcheur
     ImageGraphique marcheurGraf = créerImageGraphique(marcheur, posInitialeX, posInitialeY)
     Cadre cadre = créerCadre(largeurFond, hauteurFond)
     Canevas dessin = cadre.canevas()
     dessin.ajoutGraphique(fond)
     dessin.ajoutGraphique(marcheurGraf)
-    while(true) {
+    _tantQue (true) {
         marcheurGraf.retour()
-        int posX = posInitialeX
+        entier posX = posInitialeX
         while(posX < largeurFond) {
             pause(150)
             marcheurGraf.translation(2,0)
@@ -2202,22 +2385,22 @@ marche("marguerites.png", "dinosaurs.gif")
 *******************************************************
 [code,groovy]
 --------------------------------------------------
-def grandeRoue(int pas, String gif) {
+def grandeRoue(entier pas, Chaine gif) {
     Icone marcheur = iconeDepuisFichier(gif)
-    int largeurMarcheur = marcheur.largeur()
-    int hauteurMarcheur = marcheur.hauteur()
-    int rayon = hauteurMarcheur 
-    int dimCadre = (rayon*2 ) + (hauteurMarcheur) 
+    entier largeurMarcheur = marcheur.largeur()
+    entier hauteurMarcheur = marcheur.hauteur()
+    entier rayon = hauteurMarcheur 
+    entier dimCadre = (rayon*2 ) + (hauteurMarcheur) 
     Cadre cadre = créerCadre(dimCadre, dimCadre)
-    int posInitialeX = (dimCadre /2) - (largeurMarcheur /2 )
-     int posInitialeY =  dimCadre - hauteurMarcheur
+    entier posInitialeX = (dimCadre /2) - (largeurMarcheur /2 )
+     entier posInitialeY =  dimCadre - hauteurMarcheur
     ImageGraphique marcheurGraf = créerImageGraphique(marcheur, posInitialeX, posInitialeY)
     Canevas dessin = cadre.canevas()
     dessin.ajoutGraphique(marcheurGraf)
-    int transX = 0 ;
-    int transY = 0
-    int angle =  pas
-    while(true) {
+    entier transX = 0 ;
+    entier transY = 0
+    entier angle =  pas
+    _tantQue (true) {
         pause(150)
         transX =  rayon * Math.sin(Math.toRadians(angle))
         transY = -rayon +(rayon * Math.cos(Math.toRadians(angle)))
@@ -2238,14 +2421,14 @@ grandeRoue(5, "sprite_marcheur.gif")
 *******************************************************
 [code,groovy]
 --------------------------------------------------
-def  créerDamier(int lignes, colonnes) {
+def  créerDamier(entier lignes, entier colonnes) {
     ImageGraphique pion = imageDepuisFichier("draught1.jpg",20)
-    int dim = Math.max(pion.hauteurInitiale(), pion.largeurInitiale())
+    entier dim = Math.max(pion.hauteurInitiale(), pion.largeurInitiale())
     Cadre cadre = créerCadre("jeu",dim,dim, lignes, colonnes)
     // on notera qu'il n'y a pas vraiment "fermeture"
     // cette fonction anonyme est autonome
     Fermeture fermeture = {
-        Canevas canevas, int x, int y ->
+        Canevas canevas, entier x, entier y ->
             canevas.ajoutGraphique(pion)
     }
     cadre.siClicSurTous(fermeture)
@@ -2256,6 +2439,7 @@ créerDamier(5,5)
 *******************************************************
 
 
+[[open_source]]
 === Eléments de programmation
 
 A FAIRE (manuel pour intervenir dans les codes. Priorité: les ressources d'internationalisation)

@@ -751,12 +751,33 @@ On peut donc, dans un premier temps, réaliser des exercices simples (tels qu&#8
 de <code>scrountch</code> convient à tous les débutants. Ceux qui commencent à se sentir à l&#8217;aise peuvent ensuite passer à des niveaux
 plus complexes dont les détails sont donnés dans cette notice. On a donc ici un outil avec deux niveaux possibles de prise en main.</p></div>
 <div class="paragraph"><p>Une caractéristique remarquable de <code>scrountch</code> est que ses codes  sont automatiquement traduits dans la langue de l&#8217;utilisateur.
-Les codes d&#8217;origines ont des noms Anglais mais un dictionnaire permet leur traduction: le programmeur débutant
-n&#8217;a donc que très peu de mots anglais à retenir pour programmer et peut se concentrer sur la logique de son code.</p></div>
-<div class="paragraph"><p>Les quelques mots anglais restants concernent la structuration des codes (<code>if</code>, <code>while</code>, ..) et les types fondamentaux
-(<code>int</code>, <code>double</code>, <code>String</code> ,&#8230;) - C&#8217;est donc peu de choses à retenir -</p></div>
+Les codes d&#8217;origines ont des noms Anglais mais un dictionnaire permet leur traduction.</p></div>
+<div class="paragraph"><p>Il y a deux types de traductions:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+traduction des mots-clefs du langage: ceci concerne les "mots" qui structurent le langage.
+Ces quelques mots anglais  concernent la structuration des codes (<code>if</code>, <code>while</code>, ..) et les types fondamentaux
+(<code>int</code>, <code>double</code>, <code>String</code> ,&#8230;) - C&#8217;est donc peu de choses à retenir &#8230; mais il est possible de programmer avec une traduction-
+</p>
+<div class="paragraph"><p>Par exemple les sources en Anglais utilisent le mot-clef <code>if</code> pour aiguiller un comportement du code
+en fonction d&#8217;un test.
+Le programmeur débutant peut donc  utiliser ce mot anglais mais aussi sa traduction qui est <code>_si</code>.
+(les mots-clefs de structuration ont une traduction qui commencent par le caractère "_" (soulignement):
+cela permet de les repérer -et d'éviter des conflits de noms avec des variables- échappent à cette règle les mots
+qui concernent des types et des valeurs: <code>entier, octet, caractère, booléen, Chaine, VRAI, FAUX, NULL</code> et la fonction <code>afficher</code>)</p></div>
+<div class="paragraph"><p>Dans les exemples nous donneront en commentaire l&#8217;original en Anglais.</p></div>
+</li>
+<li>
+<p>
+traduction des codes eux-mêmes
+</p>
+</li>
+</ul></div>
 <div class="paragraph"><p>Dans certains cas (messages d&#8217;erreur) il se peut que les noms sous-jacents  des codes apparaissent. Pour cette raison
 ce petit manuel donne à chaque fois les deux noms du code: le nom en Fançais traduit et le nom "réel" .</p></div>
+<div class="paragraph"><p>Pour plus de renseignements sur les traductions voir
+<a href="#ressources">le chapitre "ressources"</a></p></div>
 <div class="paragraph"><p>La présentation de cette librairie est progressive: les mêmes fonctionnalités sont présentées plusieurs fois avec des difficultés progressives.
 A la fin un programmeur expérimenté pourra se mettre à la programmation orientée objet et enrichir les codes
 en se servant des codes graphiques des bibliothèques <code>java.awt</code> (qui servent de base aux codes de <code>scrountch</code>)</p></div>
@@ -803,6 +824,24 @@ de script dans ce répertoire. Créer des fichiers avec des noms se terminant  e
 </li>
 </ul></div>
 <div class="paragraph"><p>Pour les utilisateurs avancés nous conseillons la création d&#8217;un répertoire <code>bin</code> pour abriter des binaires générés par compilation.</p></div>
+</td>
+</tr></table>
+</div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph"><p>Il est également possible de lancer la console <code>scrountch</code> depuis une fenêtre de commmande système
+( un "terminal").</p></div>
+<div class="paragraph"><p>La commande est alors:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>java -jar scrountchConsole.jar</code></pre>
+</div></div>
+<div class="paragraph"><p>l&#8217;avantage de cette approche est qu&#8217;elle permet de lancer l&#8217;exécution avec des variables d&#8217;environnement:
+<a href="#properties">voir ICI</a></p></div>
 </td>
 </tr></table>
 </div>
@@ -880,20 +919,22 @@ pour obtenir le contenu du <code>Cadre</code> que nous aurions nommé <code>cadr
 <div class="content">
 <div class="title">Exercice: fonction simple</div>
 <div class="paragraph"><p>Ecrire une fonction : <code>Cadre cadreCarré(String chaineNumérique)</code></p></div>
-<div class="paragraph"><p>Le type <code>String</code> désigne une chaîne de caractère (comme <code>"bonjour"</code>)</p></div>
+<div class="paragraph"><p>Le type <code>Chaine</code> (original: <code>String</code>) désigne une chaîne de caractère (comme <code>"bonjour"</code>)</p></div>
 <div class="paragraph"><p>Cette fonction crée un cadre carré (largeur et hauteur sont les mêmes).
 L&#8217;appel de cette fonction pourrait se faire de la manière suivante : <code>créerCadre("300")</code>.</p></div>
 <div class="paragraph"><p>La raison pour laquelle nous avons choisi un paramètre chaîne au lieux d&#8217;un paramètre entier (qui aurait été <code>créerCadre(300)</code>) est
 que l&#8217;on va permettre à l&#8217;utilisateur de saisir la dimension demandée. Cette requête se fait par le code:</p></div>
 <div class="literalblock">
 <div class="content">
-<pre><code>String saisie = readln("veuillez saisir la dimension du Cadre")</code></pre>
+<pre><code>Chaine saisie = readln("veuillez saisir la dimension du Cadre")</code></pre>
 </div></div>
+<div class="paragraph"><p>(ou <code>String saisie = &#8230;.</code> si on utilise les mots-clefs en version originale)</p></div>
 <div class="paragraph"><p>Il restera à transformer cette chaîne en un nombre. Ce qui se fait par :</p></div>
 <div class="literalblock">
 <div class="content">
-<pre><code>int dimension = Integer.parseInt(chaineNumérique).</code></pre>
+<pre><code>entier dimension = Integer.parseInt(chaineNumérique).</code></pre>
 </div></div>
+<div class="paragraph"><p>(ou <code>int  dimension = &#8230;.</code>)</p></div>
 <div class="paragraph"><p><a href="#exoFunc">Lien vers proposition corrigé: </a></p></div>
 </div></div>
 <div class="paragraph"><p>Un <code>Canevas</code> sert à dessiner des objets graphiques (c&#8217;est d&#8217;ailleurs le nom d&#8217;un type: <code>ObjetGraphique</code> -nom réel <code>GraphicObject</code>-).
@@ -924,15 +965,16 @@ et la taille de l&#8217;image à afficher.</p></div>
 <div class="paragraph"><p>Or une fois qu&#8217;on a créé une <code>ImageGraphique</code> on peut connaître sa taille:</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><code>int largeur = image.largeurInitiale()
-int hauteur = image.hauteurInitiale()</code></pre>
+<pre><code>entier largeur = image.largeurInitiale()
+entier hauteur = image.hauteurInitiale()
+<i>// on peut utiliser int au lieu de entier</i></code></pre>
 </div></div>
 <div class="paragraph"><p>(la raison pour laquelle on a quelque chose comme "largeurInitiale" est qu&#8217;on pourra ensuite déformer cette image).</p></div>
 <div class="paragraph"><p>Donc en exercice:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-écrire une fonction <code>afficherImage(String chaîneURL)</code> qui:
+écrire une fonction <code>afficherImage(Chaine chaîneURL)</code> qui:
 </p>
 <div class="ulist"><ul>
 <li>
@@ -954,7 +996,7 @@ affiche  l&#8217;image graphique dans le canevas
 </li>
 <li>
 <p>
-pour tester utiliser la fonction <code>readln(String invite)</code> par exemple en codant : <code> String nomURL = readln("taper une URL")</code>.
+pour tester utiliser la fonction <code>readln(Chaine invite)</code> par exemple en codant : <code> Chaine nomURL = readln("taper une URL")</code>.
 Puis invoquer la fonction <code>afficherImage</code> avec le résultat.
 </p>
 </li>
@@ -1003,10 +1045,10 @@ le rectangle englobant l&#8217;image et on voit le fond en transparence)</p></di
 <div class="paragraph"><p>Exemple:</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><code>int coorX = 10
-int coorY = 20
-int largeur = 75
-int hauteur = 25
+<pre><code>entier coorX = 10
+entier coorY = 20
+entier largeur = 75
+entier hauteur = 25
 FormeGraphique unRectangle = créerRectangleGraphique(coorX, coorY, largeur, hauteur)</code></pre>
 </div></div>
 <div class="paragraph"><p>Ce qui après disposition donnera:</p></div>
@@ -1035,7 +1077,7 @@ englobant l&#8217;ellipse à dessiner (qui peut être un cercle quand les dimens
 <div class="paragraph"><p>Pour créer un Polygone on a la fonction</p></div>
 <div class="literalblock">
 <div class="content">
-<pre><code>FormeGraphique unPolygone = créerPolygoneGraphique(int[] coordonnéesX, int[] coordonnéesY)</code></pre>
+<pre><code>FormeGraphique unPolygone = créerPolygoneGraphique(entier[] coordonnéesX, entier[] coordonnéesY)</code></pre>
 </div></div>
 <div class="paragraph"><p>Les tableaux passés en argument doivent être de même taille. Chaque "sommet" <code>N</code> du polygone se trouve en
 <code>coordonnéesX[N]</code> et <code>coordonnéesY[N]</code>.</p></div>
@@ -1070,7 +1112,7 @@ On peut donc appliquer un rapport de réduction (ou d&#8217;aggrandissement) -ap
 <div class="content">
 <div class="title">Exercice: Choix et mise à l'échelle d&#8217;une image</div>
 <div class="paragraph"><p>Cet exercice concerne l&#8217;utilisation d&#8217;un branchement de choix (<code>if</code>)</p></div>
-<div class="paragraph"><p>écrire un fonction : <code>def adapterImage(String nomURL)</code></p></div>
+<div class="paragraph"><p>écrire un fonction : <code>def adapterImage(Chaine nomURL)</code></p></div>
 <div class="paragraph"><p>l&#8217;objectif est de créer un <code>Cadre</code> de taille fixe (avec un <code>Canevas</code> de 300x300 par ex.)
 de charger une image de taille quelconque et de la redimensionner pour qu&#8217;elle rentre dans le <code>Canevas</code>.</p></div>
 <div class="paragraph"><p>Donc si l&#8217;image est plus petite que le <code>Canevas</code> on la met telle quelle mais si elle est plus grande on la réduit
@@ -1093,7 +1135,7 @@ d&#8217;un facteur adapté.</p></div>
 <div class="content">
 <div class="title">Exercice : boucles et animation</div>
 <div class="paragraph"><p>Cet exercice concerne l&#8217;utilisation de boucles.</p></div>
-<div class="paragraph"><p>Créer une fonction <code>def animation(String url) </code>.
+<div class="paragraph"><p>Créer une fonction <code>def animation(Chaine url) </code>.
 L&#8217;objectif va être d&#8217;animer l&#8217;image désignée par l&#8217;URL en la faisant régulièrement rapetisser puis grossir.</p></div>
 <div class="paragraph"><p>Calibrer soigneusement le temps de <code>pause</code> en fonction des caractéristiques de votre ordinateur (<code>pause (150)</code> peut être un bon choix).</p></div>
 <div class="paragraph"><p>(le choix d&#8217;une image représentant un coeur sera particulièreent adaptée: on verra le coeur "battre")</p></div>
@@ -1158,9 +1200,9 @@ la raison de cette technique pour la tortue sera expliquée un peu plus loin.</p
 <div class="sidebarblock" id="polyTortue_lab">
 <div class="content">
 <div class="title">Exercice : boucles, tortue</div>
-<div class="paragraph"><p>L&#8217;objectif est de créer une fonction: <code>def polygoneParTortue(int rayon, int nbCotés)</code>
+<div class="paragraph"><p>L&#8217;objectif est de créer une fonction: <code>def polygoneParTortue(entier rayon, entier nbCotés)</code>
 qui dessine un polygone régulier avec une tortue. Pour les détails de calcul voir l&#8217;article Wikipedia "Polygone régulier"</p></div>
-<div class="paragraph"><p>Pour simplifier les calculs on peu aussi écrire à la place une fonction <code>def polygoneParTortue(int longueurCoté, int nbCotés)</code>
+<div class="paragraph"><p>Pour simplifier les calculs on peu aussi écrire à la place une fonction <code>def polygoneParTortue(entier longueurCoté, entier nbCotés)</code>
 dans ce cas la seule chose à calculer est l&#8217;angle de roation de la tortue chaque fois qu&#8217;elle a avancé de <code>longueurCoté</code>.</p></div>
 <div class="paragraph"><p>N&#8217;oubliez pas pour positionner votre tortue d&#8217;utiliser <code>formeGraphiqueCentrée</code> ou <code>recentrer()</code> si vous voulez fixer les coordonnées au centre du <code>Canevas</code></p></div>
 <div class="paragraph"><p>Exemple:</p></div>
@@ -1239,7 +1281,7 @@ il est très facile de se retrouver avec des parties du dessin en coordonnées n
 <div class="sect2">
 <h3 id="_traces">Traces</h3>
 <div class="paragraph"><p>Dès que vos codes deviennent un peu complexe vous pouvez désirer mettre des traces pour "visualiser" le déroulement de votre code.</p></div>
-<div class="paragraph"><p>Bien entendu vous pouvez rajouter des <code>println</code> de messages dans vos codes &#8230; et les enlever ensuite.</p></div>
+<div class="paragraph"><p>Bien entendu vous pouvez rajouter des <code>afficher</code> ( nom d&#8217;origine: <code>println</code>) de messages dans vos codes &#8230; et les enlever ensuite.</p></div>
 <div class="paragraph"><p>Une meilleur statégie est de mettre en place des traces qui resteront dans votre code et qui seront activées ou désactivées.</p></div>
 <div class="paragraph"><p>Quand vous progresserez plus avant en programmation vous apprendrez à vous servir d&#8217;un système de <code>logging</code> mais en attendant <code>scrountch</code>
 vous permet de mettre en place des traces simplifiées.</p></div>
@@ -1391,8 +1433,8 @@ on peut créer d&#8217;abord la forme de base puis ensuite la <code>FormeGraphiq
 <pre><code><i>// l'image de base s'appelle une Icone</i>
 <i>// on pourrait la créer aussi à partir d'un URL</i>
 Icone icone = iconeDepuisFichier(nomFichier)
-int largeur = icone.largeur() ;
-int hauteur = icone.hauteur()
+entier largeur = icone.largeur() ;
+entier hauteur = icone.hauteur()
 <i>// on calcule la position de l'image graphique puis</i>
 ImageGraphique marcheur = créerImageGraphique(icone, posInitialeX, posInitialeY)
 <i>// maintenant une boucle d'animation</i></code></pre>
@@ -1548,10 +1590,10 @@ Ceci se fait au moyen d&#8217;une spécificité de <code>Groovy</code>: les fonc
 <div class="paragraph"><p>Prenons un exemple de code situé dans un script <code>scrountch</code> :</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><code><strong>def</strong> boutonTourneur(String nomFichier) {
+<pre><code><strong>def</strong> boutonTourneur(Chaine nomFichier) {
     ImageGraphique imageGraphique = imageDepuisFichier(nomFichier)
     <i>//  un "truc" qui donne une  approximation de la taille nécessaire</i>
-    int dim = 5 + Math.hypot(imageGraphique.hauteurInitiale(), imageGraphique.largeurInitiale())
+    entier dim = 5 + Math.hypot(imageGraphique.hauteurInitiale(), imageGraphique.largeurInitiale())
     Cadre cadre = créerCadre("Rotations 45", dim, dim)
     Canevas canevas = cadre.canevas()
     Bouton bouton = créerBouton("rotation", "Cliquez pour 45°")
@@ -1588,7 +1630,7 @@ Ce qui suppose que l&#8217;on sache définir une telle fermeture: il y a une syn
 <div class="listingblock">
 <div class="content">
 <pre><code>canevas.siClic(
- { Canevas cible, int x, int y -&gt;
+ { Canevas cible, entier x, entier y -&gt;
     <i>// code qui exploite x et y : l'endroit où la souris a cliqué</i>
  })</code></pre>
 </div></div>
@@ -1607,7 +1649,7 @@ C&#8217;est pratique si la même fermeture est enregistrée sur plusieurs <code>
 d&#8217;enregistrer le même code auprès de tous les <code>Canevas</code>.</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><code>Fermeture fermeture = { Canevas cible, int x, int y -&gt;
+<pre><code>Fermeture fermeture = { Canevas cible, entier x, entier y -&gt;
    <i>//code: dans ce cas ces coordonnées s'ajouterons aux coordonnées x, y.</i>
    <i>//Le centrage est particulièrement délicat</i>
 }
@@ -1616,7 +1658,7 @@ cadre.siClicSurTous(fermeture)</code></pre>
 <div class="paragraph"><p>Note: il est possible d&#8217;avoir sur un bouton un code avec paramètre:</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><code>Fermeture fermeture = { String nomBouton -&gt;
+<pre><code>Fermeture fermeture = { Chaine nomBouton -&gt;
   <i>// code</i>
 }
 bouton1.siClic(fermeture)
@@ -1651,10 +1693,11 @@ pour chaque <code>Canevas</code> dans le damier: si on clique on positionne un p
 <div class="listingblock">
 <div class="content">
 <pre><code><i>// un tableau remplis de zéros</i>
-int[][] modèle = new int[lignes][colonnes]
+<i>//int[][] modèle = new int[lignes][colonnes]</i>
+entier[][] modèle = _creation entier[lignes][colonnes]
 
 <i>//"cellule" à la deuxième ligne, première colonne</i>
-int val = modèle[1][0]
+entier val = modèle[1][0]
 <i>// on le fera correspondre à cadre.canevas(1,0)</i></code></pre>
 </div></div>
 <div class="paragraph"><p>En gérant ce tableau "modèle" on saura ce qu&#8217;il faut mettre dans la cellule correspondante en gérant les règles du jeu
@@ -1803,7 +1846,8 @@ aussi utiliser des noms anglais au lieu des noms français qui "cachaient" jusqu
 <div class="content">
 <pre><code><strong>import</strong> java.awt.Color
 
-Cadre cadre = new Cadre("couleur",150,150)
+<i>//Cadre cadre = new Cadre("couleur",150,150)</i>
+Cadre cadre = _creation Cadre("couleur",150,150)
 Canevas canevas = cadre.canevas()
 canevas.arrièrePlan(Color.YELLOW)
 canevas.repeindre()</code></pre>
@@ -1834,12 +1878,13 @@ nom est <code>setForeground</code>)
 </li>
 </ul></div>
 <div class="paragraph"><p>Si la classe <code>java.awt.Color</code> offre quelques couleurs standard il vous est possible de définir votre propre couleur.</p></div>
-<div class="paragraph"><p>Exemple: <code>Color doré = new Color(212,175,55)</code></p></div>
+<div class="paragraph"><p>Exemple: <code>Color doré = new Color(212,175,55)</code>
+(ou en traduisant: <code>Color doré = _creation Color(212,175,55)</code>)</p></div>
 <div class="paragraph"><p>Ici:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-On a créé une couleur (RGB: red/green/blue) par l&#8217;invocation d&#8217;un <em>constructeur</em> : opération <code>new</code>
+On a créé une couleur (RGB: red/green/blue) par l&#8217;invocation d&#8217;un <em>constructeur</em> : opération <code>new</code> (traduit par <code>_creation</code>)
 </p>
 </li>
 <li>
@@ -1919,8 +1964,8 @@ qui sont des "peintures": <code>GradientPaint, LinearGradientPaint, MultipleGrad
 Cadre cadre = créerCadre("balle", 300,300)
 Color[] colors = [Color.WHITE, Color.RED]
 float[] ratios = [0.0, 1.0]
-int dim = 150
-int radius = dim/2
+entier dim = 150
+entier radius = dim/2
 RadialGradientPaint paint = new RadialGradientPaint(radius, radius, radius,ratios,colors)
 EllipseD ellipse = créerEllipse(dim, dim)
 FormeGraphique forme = créerFormeGraphique(ellipse, 10,10 Cell.TRANSPARENT, paint)
@@ -2022,11 +2067,13 @@ problèmes complexes et sa rédaction reste ouverte aux contributeurs "<em>Open 
 <div class="listingblock">
 <div class="content">
 <pre><code><i>// ne pas mettre de caractère accentué dans les noms de classe</i>
-<strong>class</strong> UneEtoile <strong>extends</strong> Tortue{
-   UneEtoile(int nbCotés, int longueurCoté) {
+<i>//class UneEtoile extends Tortue{</i>
+_classe UneEtoile _étend Tortue{
+   UneEtoile(entier nbCotés, entier longueurCoté) {
        double anglPolygone = ((nbCotés -2) * 180D)/ nbCotés
        double angleEtoile = (180D /nbCotés)
-       <strong>for</strong>(int ix = 0; ix &lt;nbCotés; ix++) {
+       <i>//for(int ix = 0; ix &lt;nbCotés; ix++) {</i>
+       _boucle (entier ix = 0; ix &lt;nbCotés; ix++) {
           avance(longueurCoté)
           tourneGauche(anglPolygone-angleEtoile)
           avance(longueurCoté)
@@ -2046,12 +2093,13 @@ problèmes complexes et sa rédaction reste ouverte aux contributeurs "<em>Open 
 <div class="paragraph"><p>Maintenant si vous écrivez un autre script comme:</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><code>UneEtoile étoile = new UneEtoile(13,50)
-println étoile.pointCourant()
+<pre><code><i>//UneEtoile étoile = new UneEtoile(13,50)</i>
+UneEtoile étoile = _creation UneEtoile(13,50)
+afficher étoile.pointCourant()
 <i>//FormeGraphique forme = créerFormeGraphique(étoile, recentrer(), recentrer())</i>
 FormeGraphique forme = formeGraphiqueCentrée(étoile)
 <i>// s'appelle aussi plusGrandeDim (ajout sur Forme/Shape)</i>
-int dim = étoile.maxDim() + 5
+entier dim = étoile.maxDim() + 5
 Cadre cadre = créerCadre("étoile", dim, dim)
 Canevas canevas = cadre.canevas()
 canevas.ajoutGraphique(forme)</code></pre>
@@ -2083,7 +2131,8 @@ décrits dans la variable d&#8217;environnement <code>CLASSPATH</code> &#8230; v
 </div>
 <div class="sect2">
 <h3 id="_liste_des_classes_et_méthodes">Liste des classes et méthodes</h3>
-<div class="paragraph"><p>Chaque désignation en français est suivie du nom original en Anglais qui a été traduit. Dans certains cas il n&#8217;y a pas de traduction en français.</p></div>
+<div class="paragraph"><p>Chaque désignation en français est suivie du nom original en Anglais qui a été traduit. Dans certains cas il n&#8217;y a pas de traduction en français.
+Les mots-clefs (et <code>String</code>)  ne sont pas traduits.</p></div>
 <div class="paragraph"><p>Les codes qualifiés de "fonction" sont en fait des méthodes statiques de la class <code>Fab</code>.</p></div>
 <div class="sect3">
 <h4 id="_utilitaires_généraux">Utilitaires généraux</h4>
@@ -3116,20 +3165,170 @@ dessine un texte sur l&#8217;image courante.
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_corrigés">Corrigés</h3>
+</div>
+</div>
+<h1 id="_annexes">Annexes</h1>
+<div class="sect1">
+<h2 id="properties">Variables d&#8217;environnement</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Ce sont des paramètres de lancement de l&#8217;application: un utilisateur peut vouloir changer certains comportements de <code>scrountch</code>
+comme la langue dans laquelle il veut rédiger, la police de caractère à utiliser sur la console, etc.</p></div>
+<div class="paragraph"><p>Il y a deux moyens d&#8217;initialiser ces variables:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+soit elles sont initialisées dans le contexte de votre système d&#8217;exploitation: ici les techniques diffèrent selon que vous soyez
+sur un système WINXXX ou un système dérivé d&#8217;UNIX (IOS, LINUX,&#8230;). Vous devez donc apprendre à fixer ces variables
+dans votre environnement système.
+</p>
+</li>
+<li>
+<p>
+soit elles sont passées an argument au lancement de java (dans le cas où vous démarrez scrountch depuis une console
+système (terminal shell). Exemple de lancement
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><code>java -Dscrountch.noKWtranslation=true -jar scrountchConsole.jar</code></pre>
+</div></div>
+</li>
+</ul></div>
+<div class="paragraph"><p>(Ici on démarre l&#8217;exécution de la <code>scrountchConsole</code> en invoquant <code>java -jar</code>
+mais en positionnant une variable dans l&#8217;environnement de l&#8217;exécution (<code>-Dvariable=valeur</code>)</p></div>
+<div class="paragraph"><p>Les variables que vous pouvez utiliser:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>user.language</code> (et <code>user.country</code>) : ce sont des variables standard de Java qui servent à préciser la langue que l&#8217;on veut utiliser.
+On peut, par exemple, se trouver sur un ordinateur dont la langue par défaut et l&#8217;anglais ou l&#8217;arabe alors qu&#8217;on veut utiliser
+le français dans le contexte de cette exécution: on utilisera alors <code>-Duser.language=fr</code> . Problème: il faut connaître les codes standard
+des noms de langues (comme <code>fr, en, zh, ar, &#8230;</code> )
+</p>
+<div class="paragraph"><p>ATTENTION: les traductions des codes dépendent de ces valeurs. Si vous n&#8217;avez pas une "ressource de traduction" adaptée à votre langue
+les noms resteront en Anglais par défaut. (Voir le chapitre
+<a href="ressources">ressources</a> )</p></div>
+</li>
+<li>
+<p>
+<code>scrountch.noKWtranslation</code> : permet de supprimer la traduction des mots-clefs du langage. Exemple: <code>-Dscrountch.noKWtranslation=true</code>
+</p>
+</li>
+<li>
+<p>
+<code>scrountch.noRLorientation</code>: cas très particulier, si votre langue s'écrit de droite à gauche, vous demandez à ce que la console
+soit quand même gérée avec une disposition des caractères de gauche à droite (en fait ceci n&#8217;est surtout utile que dans certains codes
+qui précédent la création de +Cadre+s et en utilisant : <code>System.setProperty("scrountch.noRLorientation", "true")</code> )
+</p>
+</li>
+<li>
+<p>
+<code>scrountch.consoleFont</code> : permet de changer la police utilisée dans la Console. La valeur est de la forme <code>nomPolice-taille</code> .
+Exemple: <code>-Dscrountch.consoleFont="Apple Color Emoji-20"</code>
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ressources">Ressources</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>On qualifie de "ressources" des fichiers qui permettent de paramétrer le comportement de l&#8217;application.</p></div>
+<div class="paragraph"><p>La plupart sont des fichiers de propriétés ("<code>xxx.properties</code>")</p></div>
+<div class="paragraph"><p>Voici par exemple un fichier <code>keywords_fr.properties</code> (disposé dans un répertoire nommé <code>scrountch</code>) et qui permet
+les traductions des mots-clefs:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code># modifier les mots-clefs: les commentaires commencent par un # en début de ligne
+# forme: traduction=mot-clef-original
+_enTantQue=as
+_entantque=as
+#assert
+_stop=break
+_cas=case
+_capture=catch
+_classe=class
+#const
+#continue
+#def
+_parDefaut=default
+_pardefaut=default
+_parDéfaut=default
+#do
+_sinon=else
+#enum
+_étend=extends
+_etend=extends
+FAUX=false
+_enTousCas=finally
+_entouscas=finally
+_boucle=for
+#goto
+_si:if
+_implante=implements
+#import
+#in
+_instanceDe=instanceof
+_instancede=instanceof
+#interface
+_création=new
+_creation=new
+#null
+NULL=null
+#package
+_renvoi=return
+#super
+_selon=switch
+_objetCourant=this
+_objetcourant=this
+#ceci=this
+_incident=throw
+_propage=throws
+#trait
+VRAI=true
+_essai=try
+_tantQue=while
+_tantque=while
+
+# types
+entier=int
+#short
+octet=byte
+caractère=char
+caractere=char
+#double
+#float
+booléen=boolean
+booleen=boolean
+
+# les suivants ne sont pas des mots-clefs du langage
+Chaîne=String
+Chaine=String
+
+afficher=println</code></pre>
+</div></div>
+<div class="paragraph"><p>Les modifications d&#8217;une telle ressource sont possibles et supposent la modification du jar
+<a href="#open_source">voir ICI</a></p></div>
+<div class="paragraph"><p>A FAIRE: fichier properties pour le logging</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_corrigés">Corrigés</h2>
+<div class="sectionbody">
 <div class="sidebarblock" id="exoFunc">
 <div class="content">
 <div class="title">fonction simple</div>
 <div class="listingblock">
 <div class="content">
-<pre><code><strong>def</strong> Cadre cadreCarré(String chaine) {
-    int taille = Integer.parseInt(chaine)
+<pre><code><i>//def Cadre cadreCarré(String chaine) {</i>
+<strong>def</strong> Cadre cadreCarré(Chaine chaine) {
+    <i>//int taille = Integer.parseInt(chaine)</i>
+    entier taille = Integer.parseInt(chaine)
     Cadre res = créerCadre(chaine +" x "+ chaine, taille, taille)
     <strong>return</strong> res
 }
 
-String saisie = readln("donner dimension cadre")
+<i>//String saisie = readln("donner dimension cadre")</i>
+Chaine saisie = readln("donner dimension cadre")
 cadreCarré(saisie)</code></pre>
 </div></div>
 </div></div>
@@ -3138,14 +3337,16 @@ cadreCarré(saisie)</code></pre>
 <div class="title">fonction simple, Image Graphique</div>
 <div class="listingblock">
 <div class="content">
-<pre><code><strong>def</strong> afficherImage(String nomURL){
+<pre><code><i>//def afficherImage(String nomURL){</i>
+<strong>def</strong> afficherImage(Chaine nomURL){
     ImageGraphique image = imageDepuisURL(nomURL)
     Cadre cadre = créerCadre(nomURL, image.largeurInitiale(), image.hauteurInitiale())
     Canevas fondDessin = cadre.canevas()
     fondDessin.ajoutGraphique(image)
 }
 
-String nom = readln("donnez l'URL de l'image")
+<i>//String nom = readln("donnez l'URL de l'image")</i>
+Chaine nom = readln("donnez l'URL de l'image")
 afficherImage(nom)</code></pre>
 </div></div>
 </div></div>
@@ -3154,15 +3355,18 @@ afficherImage(nom)</code></pre>
 <div class="title">tableau, forme graphique</div>
 <div class="listingblock">
 <div class="content">
-<pre><code><strong>def</strong> afficherPolygone(int[] xs, int[] ys) {
+<pre><code><i>//def afficherPolygone(int[] xs, int[] ys) {</i>
+<strong>def</strong> afficherPolygone(entier[] xs, entier[] ys) {
     Cadre cadre = créerCadre("polygone", 300,300)
     Canevas canevas = cadre.canevas()
     FormeGraphique forme = créerPolygoneGraphique(xs, ys)
     canevas.ajoutGraphique(forme)
 }
 
-int[] lesX = [100,200,200, 100]
-int[] lesY = [100,100,200, 200]
+<i>//int[] lesX = [100,200,200, 100]</i>
+<i>//int[] lesY = [100,100,200, 200]</i>
+entier[] lesX = [100,200,200, 100]
+entier[] lesY = [100,100,200, 200]
 afficherPolygone(lesX, lesY)</code></pre>
 </div></div>
 </div></div>
@@ -3171,27 +3375,28 @@ afficherPolygone(lesX, lesY)</code></pre>
 <div class="title">choix, echelle image</div>
 <div class="listingblock">
 <div class="content">
-<pre><code><strong>def</strong> adapterImage(String nomURL){
-    int hauteurCadre = 300
-    int largeurCadre = 300
+<pre><code><strong>def</strong> adapterImage(Chaine nomURL){
+    entier hauteurCadre = 300
+    entier largeurCadre = 300
     ImageGraphique image = imageDepuisURL(nomURL)
     Cadre cadre = créerCadre(nomURL,largeurCadre, hauteurCadre)
-     int hauteurImage = image.hauteurInitiale()
-    int largeurImage = image.largeurInitiale()
+     entier hauteurImage = image.hauteurInitiale()
+    entier largeurImage = image.largeurInitiale()
     double echelleHauteur = (hauteurCadre * 100D)  / hauteurImage
     double echelleLargeur = (largeurCadre * 100D) / largeurImage
-    int plusPetitRapport = echelleLargeur
+    entier plusPetitRapport = echelleLargeur
     <strong>if</strong>(echelleHauteur &lt; echelleLargeur) {
       plusPetitRapport = echelleHauteur
     }
-    <strong>if</strong>(plusPetitRapport &lt; 100) {
+    <i>//if(plusPetitRapport &lt; 100) {</i>
+    _si(plusPetitRapport &lt; 100) {
       image.changerEchelle(plusPetitRapport)
     }
     Canevas fondDessin = cadre.canevas()
     fondDessin.ajoutGraphique(image)
 }
 
-String nom = readln("donnez l'URL de l'image")
+Chaine nom = readln("donnez l'URL de l'image")
 adapterImage(nom)</code></pre>
 </div></div>
 </div></div>
@@ -3200,21 +3405,22 @@ adapterImage(nom)</code></pre>
 <div class="title">boucles, animation, échelle d&#8217;image</div>
 <div class="listingblock">
 <div class="content">
-<pre><code><strong>def</strong> animation(String url) {
+<pre><code><strong>def</strong> animation(Chaine url) {
     ImageGraphique img = imageDepuisURL(url)
     Cadre cadre = créerCadre(url, img.largeurInitiale(), img.hauteurInitiale())
     Canevas canevas = cadre.canevas()
     canevas.ajoutGraphique(img)
-    int échelle = 100
-    int compteur = 0
-    <strong>while</strong> (compteur &lt; 20) {
-        <strong>while</strong> (échelle &gt;= 50) {
+    entier échelle = 100
+    entier compteur = 0
+    <i>//while (compteur &lt; 20) {</i>
+    _tantQue (compteur &lt; 20) {
+        _tantQue (échelle &gt;= 50) {
             img.changerEchelle(échelle)
             pause(150)
             canevas.repeindre();
             échelle = échelle - 5
         }
-        <strong>while</strong> (échelle &lt;= 100) {
+        _tantQue (échelle &lt;= 100) {
             img.changerEchelle(échelle)
             pause(150)
             canevas.repeindre()
@@ -3232,29 +3438,29 @@ animation("file:heart.png")</code></pre>
 <div class="title">boucles, utilisation tortue</div>
 <div class="listingblock">
 <div class="content">
-<pre><code><i>//un fonction pour calculer l'angle interne d'un poluygone régulier</i>
-<strong>def</strong> double angleInternePolygone(int nbCotés) {
+<pre><code><i>//une fonction pour calculer l'angle interne d'un polygone régulier</i>
+<strong>def</strong> double angleInternePolygone(entier nbCotés) {
  <strong>return</strong> ((nbCotés -2) * 180D)/ nbCotés
 }
 
 <i>//taille du coté d'un polygone régulier en focntion du rayon</i>
-<strong>def</strong> int tailleCoté(int rayon, int nbCotés) {
+<strong>def</strong> entier tailleCoté(entier rayon, entier nbCotés) {
    <strong>return</strong> 2 * (rayon * Math.sin(Math.PI/nbCotés))
 }
 
-<strong>def</strong> polygoneParTortue(int rayon, int nbCotés) {
-  int coté = tailleCoté(rayon, nbCotés)
+<strong>def</strong> polygoneParTortue(entier rayon, entier nbCotés) {
+  entier coté = tailleCoté(rayon, nbCotés)
   double angleRotation =  180 - angleInternePolygone(nbCotés)
   Tortue tortue = créerTortue()
-  int ix = 0
-  <strong>while</strong>(ix &lt; nbCotés) {
+  entier ix = 0
+  _tantQue (ix &lt; nbCotés) {
       tortue.avance(coté)
       tortue.tourneDroite(angleRotation)
       ix = ix +1
   }
   <i>//FormeGraphique graphe = créerFormeGraphique(tortue, recentrer(), recentrer())</i>
   FormeGraphique graphe = formeGraphiqueCentrée(tortue)
-  int dim = tortue.maxDim() + 5
+  entier dim = tortue.maxDim() + 5
   Cadre cadre = créerCadre(dim, dim)
   Canevas dessin = cadre.canevas()
   dessin.ajoutGraphique(graphe)
@@ -3268,23 +3474,23 @@ animation("file:heart.png")</code></pre>
 <div class="title">boucles, animation, translation</div>
 <div class="listingblock">
 <div class="content">
-<pre><code><strong>def</strong> marche(String imagefond, String gif) {
+<pre><code><strong>def</strong> marche(Chaine imagefond, Chaine gif) {
     ImageGraphique fond = imageDepuisFichier(imagefond)
-    int largeurFond = fond.largeurInitiale() ;
-    int hauteurFond = fond.hauteurInitiale() ;
+    entier largeurFond = fond.largeurInitiale() ;
+    entier hauteurFond = fond.hauteurInitiale() ;
     Icone marcheur = iconeDepuisFichier(gif)
-    int largeurMarcheur = marcheur.largeur()
-    int hauteurMarcheur = marcheur.hauteur()
-    int posInitialeX = -largeurMarcheur
-    int posInitialeY = hauteurFond - hauteurMarcheur
+    entier largeurMarcheur = marcheur.largeur()
+    entier hauteurMarcheur = marcheur.hauteur()
+    entier posInitialeX = -largeurMarcheur
+    entier posInitialeY = hauteurFond - hauteurMarcheur
     ImageGraphique marcheurGraf = créerImageGraphique(marcheur, posInitialeX, posInitialeY)
     Cadre cadre = créerCadre(largeurFond, hauteurFond)
     Canevas dessin = cadre.canevas()
     dessin.ajoutGraphique(fond)
     dessin.ajoutGraphique(marcheurGraf)
-    <strong>while</strong>(true) {
+    _tantQue (true) {
         marcheurGraf.retour()
-        int posX = posInitialeX
+        entier posX = posInitialeX
         <strong>while</strong>(posX &lt; largeurFond) {
             pause(150)
             marcheurGraf.translation(2,0)
@@ -3303,22 +3509,22 @@ marche("marguerites.png", "dinosaurs.gif")</code></pre>
 <div class="title">Exercice: boucles, animation, rotations</div>
 <div class="listingblock">
 <div class="content">
-<pre><code><strong>def</strong> grandeRoue(int pas, String gif) {
+<pre><code><strong>def</strong> grandeRoue(entier pas, Chaine gif) {
     Icone marcheur = iconeDepuisFichier(gif)
-    int largeurMarcheur = marcheur.largeur()
-    int hauteurMarcheur = marcheur.hauteur()
-    int rayon = hauteurMarcheur
-    int dimCadre = (rayon*2 ) + (hauteurMarcheur)
+    entier largeurMarcheur = marcheur.largeur()
+    entier hauteurMarcheur = marcheur.hauteur()
+    entier rayon = hauteurMarcheur
+    entier dimCadre = (rayon*2 ) + (hauteurMarcheur)
     Cadre cadre = créerCadre(dimCadre, dimCadre)
-    int posInitialeX = (dimCadre /2) - (largeurMarcheur /2 )
-     int posInitialeY =  dimCadre - hauteurMarcheur
+    entier posInitialeX = (dimCadre /2) - (largeurMarcheur /2 )
+     entier posInitialeY =  dimCadre - hauteurMarcheur
     ImageGraphique marcheurGraf = créerImageGraphique(marcheur, posInitialeX, posInitialeY)
     Canevas dessin = cadre.canevas()
     dessin.ajoutGraphique(marcheurGraf)
-    int transX = 0 ;
-    int transY = 0
-    int angle =  pas
-    <strong>while</strong>(true) {
+    entier transX = 0 ;
+    entier transY = 0
+    entier angle =  pas
+    _tantQue (true) {
         pause(150)
         transX =  rayon * Math.sin(Math.toRadians(angle))
         transY = -rayon +(rayon * Math.cos(Math.toRadians(angle)))
@@ -3338,14 +3544,14 @@ grandeRoue(5, "sprite_marcheur.gif")</code></pre>
 <div class="title">Exercice: fermeture, gestion événements</div>
 <div class="listingblock">
 <div class="content">
-<pre><code><strong>def</strong>  créerDamier(int lignes, colonnes) {
+<pre><code><strong>def</strong>  créerDamier(entier lignes, entier colonnes) {
     ImageGraphique pion = imageDepuisFichier("draught1.jpg",20)
-    int dim = Math.max(pion.hauteurInitiale(), pion.largeurInitiale())
+    entier dim = Math.max(pion.hauteurInitiale(), pion.largeurInitiale())
     Cadre cadre = créerCadre("jeu",dim,dim, lignes, colonnes)
     <i>// on notera qu'il n'y a pas vraiment "fermeture"</i>
     <i>// cette fonction anonyme est autonome</i>
     Fermeture fermeture = {
-        Canevas canevas, int x, int y -&gt;
+        Canevas canevas, entier x, entier y -&gt;
             canevas.ajoutGraphique(pion)
     }
     cadre.siClicSurTous(fermeture)
@@ -3354,9 +3560,8 @@ grandeRoue(5, "sprite_marcheur.gif")</code></pre>
 créerDamier(5,5)</code></pre>
 </div></div>
 </div></div>
-</div>
 <div class="sect2">
-<h3 id="_eléments_de_programmation">Eléments de programmation</h3>
+<h3 id="open_source">Eléments de programmation</h3>
 <div class="paragraph"><p>A FAIRE (manuel pour intervenir dans les codes. Priorité: les ressources d&#8217;internationalisation)</p></div>
 </div>
 </div>
@@ -3365,7 +3570,7 @@ créerDamier(5,5)</code></pre>
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Dernière mise à jour 2017-02-22 17:16:16 CET
+Dernière mise à jour 2017-03-08 14:08:00 CET
 </div>
 </div>
 </body>

@@ -13,7 +13,6 @@ import java.awt.image.BufferStrategy
 import java.util.function.BiConsumer
 import java.util.function.Consumer
 import java.util.logging.Level
-
 /**
  *  a <code>Canvas</code> with special features.
  *  It contains a list of <TT>GraphicObject</TT> that are drawn each time an instance
@@ -316,13 +315,16 @@ class Cell extends Canvas {
     }
 
     /**
+     * NO WAY: creates a stack overflow!
      * registers a no-arg procedure that will be invoked when the current Cell is clicked.
      * @param runnable
      * @return
      */
+    /*
     public MouseListener onClick(Runnable runnable) {
         return onClick({runnable.run()})
     }
+    */
 
     /**
      * registers a CLosure that takes a <TT>Rectangle2D</TT> argument that will be invoked

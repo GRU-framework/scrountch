@@ -98,7 +98,9 @@ class ShellGen {
             GlobalCommons.LOG.log(Level.WARNING, "no internationalisation ressource for classes", exc)
         }
         config.addCompilationCustomizers(importCustomizer)
-
+        if(SourceModifierParserPlugin.dictionary != null) {
+            config.setPluginFactory(new SourcePreProcessor())
+        }
         config.setScriptBaseClass('scrountch.ScrountchScript')
         return config
     }

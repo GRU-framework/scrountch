@@ -1,0 +1,4 @@
+entier maximum = 49
+_boucle(entier index = 0 ; index < 6 ; index = index +1){
+    afficher(nombreAuHasard(maximum) +1 )
+}
